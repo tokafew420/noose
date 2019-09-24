@@ -1,6 +1,6 @@
 {
   "name": "noose",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/noose.min.js",
   "author": "Tony Vu <tokafew420@gmail.com>",
   "license": "MIT",
@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git://github.com/tokafew420/noose.git"
   },
+  "homepage": "https://tokafew420.github.io/noose/",
   "scripts": {
     "build": "gulp"
   },

@@ -51,7 +51,9 @@ gulp.task('minify', function () {
         .pipe(terser())
         .pipe(sourcemaps.write('./'))
         .pipe(rename((path) => {
-            path.basename += '.min';
+            if (path.extname === '.js') {
+                path.basename += '.min';
+            }
         }))
         .pipe(gulp.dest('dist'));
 });
@@ -63,7 +65,9 @@ gulp.task('minify-es5', function () {
         .pipe(terser())
         .pipe(sourcemaps.write('./'))
         .pipe(rename((path) => {
-            path.basename += '.min';
+            if (path.extname === '.js') {
+                path.basename += '.min';
+            }
         }))
         .pipe(gulp.dest('dist'));
 });
