@@ -1,0 +1,269 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Noose Tool Example">
+    <meta name="author" content="Tokafew420">
+
+    <title>Noose Example</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #84a3da;
+        }
+
+        body>.container {
+            background-color: white;
+        }
+
+        .example-target {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .code {
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            color: #721c24;
+            padding-left: .5em;
+            padding-right: .5em;
+        }
+
+        .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        table {
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+
+        .selected {
+            background-color: rgba(36, 143, 220, 0.3) !important;
+        }
+
+        .noose-light {
+            border-color: #FFF !important;
+        }
+
+        .selected-green {
+            background-color: rgba(26, 247, 153, 0.5);
+        }
+
+        .row>.col,
+        .row>[class^=col-] {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            background-color: rgba(86, 61, 124, .15);
+            border: 1px solid rgba(86, 61, 124, .2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container p-5">
+        <h1>Noose examples</h1>
+        <p class="lead mb-5">Examples of the noose tool and various options/use cases.</p>
+        <h3>Initialization</h3>
+        <section class="example mb-4">
+            <p>Simple initialization using the default options.</p>
+            <div id="example-1-1" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                <table class="table table-sm table-collapsed table-striped table-bordered">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose($('#example-1-1')[0])</code></pre>
+        </section>
+
+        <h3>Options</h3>
+        <section class="example mb-4">
+            <p>Select only certain elements by specifying the <code class="code">select</code> option.</p>
+            <div id="example-2-1" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                <table class="table table-sm table-collapsed table-striped table-bordered">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-2-1', {
+    select: 'td'
+})</code></pre>
+        </section>
+        <section class="example mb-4">
+            <p>Disable selection by setting <code class="code">select</code> option to <code class="code">false</code>.
+            </p>
+            <div id="example-2-2" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                <table class="table table-sm table-collapsed table-striped table-bordered">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-2-2', {
+    select: false
+})</code></pre>
+        </section>
+        <section class="example mb-4">
+            <p>Setting <code class="code">mode</code> to <code class="code">'whole'</code> will not select the element
+                until the entire element is within the noose.</p>
+            <div id="example-2-3" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                <table class="table table-sm table-collapsed table-striped table-bordered">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-2-3', {
+    select: 'td',
+    mode: 'fit'
+})</code></pre>
+        </section>
+        <section class="example mb-4">
+            <p>Use the <code class="code">start</code> and <code class="code">stop</code> handler options to add custom
+                code.</p>
+            <div id="example-2-4" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                <table class="table table-sm table-collapsed table-striped table-bordered">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-2-4', {
+    select: 'td',
+    start: function (e, position) {
+        console.log('start: ', e, position);
+    },
+    stop: function (e, position, selected) {
+        console.log('end: ', e, position, selected);
+        alert(selected.length + ' cell(s) selected');
+    }
+})</code></pre>
+        </section>
+        <section class="example mb-4">
+            <p>Apply custom styling</p>
+            <div id="example-2-5" class="example-target no-select p-2 mb-2 bg-dark" data-columns="4" data-rows="10">
+                <table class="table table-sm table-collapsed table-striped table-bordered table-dark">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-2-5', {
+    select: 'td',
+    classes: {
+        noose: 'noose-light',
+        selected: 'selected-green'
+    }
+})</code></pre>
+        </section>
+
+        <h3>Demo</h3>
+        <section class="example mb-4">
+            <p>Bootstrap grid.</p>
+            <div id="example-3-1" class="example-target no-select p-2 mb-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">.col-4</div>
+                        <div class="col-4">.col-4</div>
+                        <div class="col-4">.col-4</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">.col-sm-4</div>
+                        <div class="col-sm-4">.col-sm-4</div>
+                        <div class="col-sm-4">.col-sm-4</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">.col-md-4</div>
+                        <div class="col-md-4">.col-md-4</div>
+                        <div class="col-md-4">.col-md-4</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">.col-lg-4</div>
+                        <div class="col-lg-4">.col-lg-4</div>
+                        <div class="col-lg-4">.col-lg-4</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-4">.col-xl-4</div>
+                        <div class="col-xl-4">.col-xl-4</div>
+                        <div class="col-xl-4">.col-xl-4</div>
+                    </div>
+                </div>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-3-1', {
+    select: '.row > div'
+})</code></pre>
+        </section>
+        <section class="example mb-4">
+            <p>Scrolling containers.</p>
+            <div id="example-3-2" class="example-target no-select p-2 mb-2" data-columns="20" data-rows="100"
+                style="max-height: 300px; overflow: auto; position: relative;">
+                <table class="table table-sm table-collapsed table-striped table-bordered">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-3-2', {
+    select: 'td'
+})</code></pre>
+        </section>
+        <section class="example mb-4">
+            <p>Scrolling containers.</p>
+            <div class="mb-2" style="max-height: 300px; overflow: auto; position: relative;">
+                <div id="example-3-3" class="example-target no-select p-2 mb-2" data-columns="20" data-rows="100">
+                    <table class="table table-sm table-collapsed table-striped table-bordered">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <pre class="code example-code p-2"><code>new Noose('#example-3-3', {
+    select: 'td'
+})</code></pre>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="../dist/noose.es5.min.js"></script>
+    <script>
+        $(function () {
+            var body = document.querySelector('body');
+
+            $('.example').each(function () {
+                var $example = $(this);
+                var $target = $('.example-target', $example);
+                var $code = $('.example-code', $example);
+                var cols = +$target.attr('data-columns');
+                var rows = +$target.attr('data-rows');
+                var i, j;
+
+                var $table = $('table', $target);
+                for (i = 1; i <= cols; i++) {
+                    $('thead', $table).append('<th>Column ' + i + '</th>');
+                }
+                for (i = 1; i <= rows; i++) {
+                    var $row = $('<tr></tr>');
+                    for (j = 1; j <= cols; j++) {
+                        $row.append('<td>Cell ' + j + ',' + i + '</td>');
+                    }
+                    $('tbody', $table).append($row);
+                }
+
+                $target.append($table);
+
+                Function('"use strict"; return (' + $code.text() + ')')();
+            });
+        });
+    </script>
+</body>
+
+</html>

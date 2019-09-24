@@ -3,6 +3,7 @@
 
 # Directories
 /.vscode/
+/docs/
 /node_modules/
 /src/
 
