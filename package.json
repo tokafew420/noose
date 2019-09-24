@@ -1,7 +1,7 @@
 {
   "name": "noose",
-  "version": "1.0.0",
-  "main": "noose.js",
+  "version": "1.0.1",
+  "main": "dist/noose.min.js",
   "author": "Tony Vu <tokafew420@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -23,5 +23,13 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-terser": "^1.2.0",
     "terser": "^4.3.1"
-  }
+  },
+  "keywords": [
+    "lasso",
+    "noose",
+    "select",
+    "drag",
+    "vanilla",
+    "javascript"
+  ]
 }

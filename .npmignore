@@ -10,4 +10,4 @@
 .editorconfig
 .eslintignore
 .eslintrc.json
-gulpfile.json
+gulpfile.js
