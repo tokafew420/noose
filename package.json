@@ -1,0 +1,27 @@
+{
+  "name": "noose",
+  "version": "1.0.0",
+  "main": "noose.js",
+  "author": "Tony Vu <tokafew420@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tokafew420/noose.git"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser": "^1.2.0",
+    "terser": "^4.3.1"
+  }
+}
