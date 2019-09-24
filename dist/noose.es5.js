@@ -119,7 +119,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var throttled = false;
 
       self._onStart = function (e) {
-        if (e.which === 1 & self.opts.enabled && (!started || e.currentTarget !== self.currentTarget)) {
+        if (self.opts.enabled && (!started || e.currentTarget !== self.currentTarget) && (e.type !== 'mousedown' || e.which === 1)) {
           started = true;
           self.currentTarget = e.currentTarget; // Initialize container values
 
@@ -205,7 +205,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       };
 
       self._onEnd = function (e) {
-        if (e.which === 1 && self.opts.enabled && started) {
+        if (self.opts.enabled && started && (e.type !== 'mouseup' || e.which === 1)) {
           started = false;
 
           if (e.currentTarget === self.currentTarget) {
@@ -222,9 +222,12 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
       Array.prototype.forEach.call(self.containers, function (container) {
         container.addEventListener('mousedown', self._onStart);
+        container.addEventListener('touchstart', self._onStart);
         container.addEventListener('mousemove', self._onMove);
+        container.addEventListener('touchmove', self._onMove);
         container.addEventListener('scroll', self._onMove);
         container.addEventListener('mouseup', self._onEnd);
+        container.addEventListener('touchend', self._onEnd);
       });
       return self;
     }
@@ -241,9 +244,12 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         var self = this;
         self.containers.forEach(function (container) {
           container.removeEventListener('mousedown', self._onStart);
+          container.removeEventListener('touchstart', self._onStart);
           container.removeEventListener('mousemove', self._onMove);
+          container.removeEventListener('touchmove', self._onMove);
           container.removeEventListener('scroll', self._onMove);
           container.removeEventListener('mouseup', self._onEnd);
+          container.removeEventListener('touchend', self._onEnd);
         });
         return self;
       }
@@ -275,16 +281,21 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }, {
       key: "updatePointerPosition",
       value: function updatePointerPosition(e) {
-        var pointer = this.coors.pointer; // Get position relative to the document's top left origin
+        var root = e && e.touches && e.touches[0] || e;
+        var pointer = this.coors.pointer;
 
-        var pos = {
-          x: e.pageX,
-          y: e.pageY
-        }; // Keep start static
+        if (root && typeof root.pageX === 'number') {
+          // Get position relative to the document's top left origin
+          var pos = {
+            x: root.pageX,
+            y: root.pageY
+          }; // Keep start static
 
-        if (!pointer.start) pointer.start = pos; // Current position is always end
+          if (!pointer.start) pointer.start = pos; // Current position is always end
 
-        pointer.end = pos;
+          pointer.end = pos;
+        }
+
         return this;
       }
       /**
