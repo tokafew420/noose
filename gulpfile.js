@@ -2,7 +2,9 @@ const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const eslint = require('gulp-eslint');
 const gulp = require('gulp');
+const pjson = require('./package.json');
 const rename = require('gulp-rename');
+const replace = require('gulp-string-replace');
 const sourcemaps = require('gulp-sourcemaps');
 const terser = require('gulp-terser');
 
@@ -29,12 +31,14 @@ gulp.task('lint', () => {
 // Copy source file to dist directory
 gulp.task('copy', () => {
     return gulp.src('src/*.js')
+        .pipe(replace(/1\.0\.0/g, pjson.version))
         .pipe(gulp.dest('dist'));
 });
 
 // Transpile es6 to es2015 for dist
 gulp.task('transpile', function () {
     return gulp.src('src/*.js')
+        .pipe(replace(/1\.0\.0/g, pjson.version))
         .pipe(babel({
             presets: ['@babel/preset-env']
         }))
@@ -47,6 +51,7 @@ gulp.task('transpile', function () {
 // Minify es6 source for dist
 gulp.task('minify', function () {
     return gulp.src('src/*.js')
+        .pipe(replace(/1\.0\.0/g, pjson.version))
         .pipe(sourcemaps.init())
         .pipe(terser())
         .pipe(sourcemaps.write('./'))
@@ -61,6 +66,7 @@ gulp.task('minify', function () {
 // Minify es2016 source for dist
 gulp.task('minify-es5', function () {
     return gulp.src('dist/noose.es5.js')
+        .pipe(replace(/1\.0\.0/g, pjson.version))
         .pipe(sourcemaps.init())
         .pipe(terser())
         .pipe(sourcemaps.write('./'))
