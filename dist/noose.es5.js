@@ -8,6 +8,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+/**
+ * Noose
+ * 
+ * version: 1.1.0
+ */
 (function (factory, window, document) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
     // CommonJS
@@ -388,10 +393,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
        * Get the current version.
        */
 
-    }, {
+    }], [{
       key: "version",
       get: function get() {
-        return '1.0.0';
+        return '1.1.0';
       }
     }]);
 

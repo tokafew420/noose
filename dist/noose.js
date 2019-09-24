@@ -1,3 +1,9 @@
+/**
+ * Noose
+ * 
+ * version: 1.1.0
+ */
+
 (function (factory, window, document) {
     if (typeof exports === 'object') {
         // CommonJS
@@ -347,8 +353,8 @@
         /**
          * Get the current version.
          */
-        get version() {
-            return '1.0.0';
+        static get version() {
+            return '1.1.0';
         }
     }
 
