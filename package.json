@@ -9,9 +9,6 @@
     "url": "git://github.com/tokafew420/noose.git"
   },
   "homepage": "https://tokafew420.github.io/noose/",
-  "scripts": {
-    "build": "gulp"
-  },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.6.0",
