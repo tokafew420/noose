@@ -10,6 +10,6 @@ Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's [select
 
 <p align="center">
     <a href="https://tokafew420.github.io/noose/">
-        <img src="https://tokafew420.github.io/noose/docs/demo.gif" alt="Noose demo">
+        <img src="https://github.com/tokafew420/noose/blob/master/docs/demo.gif" alt="Noose demo">
     </a>
 </p>
