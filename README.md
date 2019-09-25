@@ -6,4 +6,10 @@
 ![David](https://img.shields.io/david/tokafew420/noose)
 [![npm](https://img.shields.io/npm/dt/noose)](https://www.npmjs.com/package/noose)
 
-Simple lasso (noose) tool in vanilla JavaScript. Supports modern browsers and mobile.
+Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's [selectable](https://jqueryui.com/selectable/). Supports modern browsers and mobile.
+
+<p align="center">
+    <a href="https://tokafew420.github.io/noose/">
+        <img src="https://tokafew420.github.io/noose/docs/demo.gif" alt="Noose demo">
+    </a>
+</p>
