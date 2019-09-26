@@ -1,7 +1,7 @@
 /**
  * Noose
  * 
- * version: 1.1.1
+ * version: 1.1.2
  */
 
 (function (factory, window, document) {
@@ -354,7 +354,7 @@
          * Get the current version.
          */
         static get version() {
-            return '1.1.1';
+            return '1.1.2';
         }
     }
 
