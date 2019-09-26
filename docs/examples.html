@@ -1,0 +1,201 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's selectable. Supports modern browsers and mobile.">
+    <meta name="author" content="Tokafew420">
+
+    <title>Noose - Examples</title>
+
+    <link rel="canonical" href="https://tokafew420.github.io/noose/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .example-target {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        table {
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+
+        .selected {
+            background-color: rgba(36, 143, 220, 0.3) !important;
+        }
+
+        .noose-light {
+            border-color: #FFF !important;
+        }
+
+        .selected-green {
+            background-color: rgba(26, 247, 153, 0.5);
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row">
+        <a class="navbar-brand mr-0 mr-md-2" href="https://github.com/tokafew420/noose" aria-label="Tokafew420"><img
+                src="https://s.gravatar.com/avatar/75ccde04773b375e13081442ca011832?s=60" /></a>
+        <div class="navbar-nav-scroll">
+            <ul class="navbar-nav bd-navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link" href="./">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./documentation.html">Documentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./examples.html">Examples</a>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+                <a class="nav-link p-2" href="https://github.com/tokafew420/noose" rel="noopener"
+                    aria-label="GitHub"><svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32"
+                        aria-hidden="true">
+                        <title>GitHub</title>
+                        <path fill-rule="evenodd"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2" href="https://www.npmjs.com/package/noose" rel="noopener" aria-label="npm"><svg
+                        class="npm-icon" viewBox="0 0 780 250">
+                        <title>npm</title>
+                        <path
+                            d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z">
+                        </path>
+                    </svg></a>
+            </li>
+        </ul>
+    </header>
+
+
+    <div class="container">
+        <div class="row flex-xl-nowrap">
+            <main class="col-12" role="main">
+                <h1>Noose examples</h1>
+                <p class="lead mb-5">Examples of the noose tool and various options/use cases.</p>
+                <h2 id="simple-initialization">Initialization</h2>
+                <hr />
+                <section class="example mb-4">
+                    <p>Simple initialization using the default options.</p>
+                    <div id="simple-initialization-example" class="example-target no-select p-2 mb-2" data-columns="5"
+                        data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <pre class="code-block example-code p-2">
+new Noose('#simple-initialization-example')
+</pre>
+                </section>
+
+                <h2>Options</h2>
+                <hr />
+                <h3>mode</h3>
+                <section class="example mb-4">
+                    <p>Setting <code class="code">mode</code> to <code class="code">'fit'</code> will not select the
+                        element until the entire element is within the noose.</p>
+                    <div id="option-mode-fit" class="example-target no-select p-2 mb-2" data-columns="5" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <pre class="code-block example-code p-2">
+new Noose('#option-mode-fit', {
+    select: 'td',
+    mode: 'fit'
+})</pre>
+                </section>
+                <h3>select</h3>
+                <section class="example mb-4">
+                    <p>Select only certain elements by specifying the <code class="code">select</code> option.</p>
+                    <div id="option-select" class="example-target no-select p-2 mb-2" data-columns="5" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <pre class="code-block example-code p-2">
+new Noose('#option-select', {
+    select: 'td'
+})</pre>
+                </section>
+                <section class="example mb-4">
+                    <p>Disable selection by setting <code class="code">select</code> option to <code
+                            class="code">false</code>.
+                    </p>
+                    <div id="example-2-2" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <pre class="code-block example-code p-2">
+new Noose('#example-2-2', {
+    select: false
+})</pre>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.min.js"></script>
+    <script>
+        $(function () {
+            var body = document.querySelector('body');
+
+            $('.example').each(function () {
+                var $example = $(this);
+                var $target = $('.example-target', $example);
+                var $code = $('.example-code', $example);
+                var cols = +$target.attr('data-columns');
+                var rows = +$target.attr('data-rows');
+                var i, j;
+
+                var $table = $('table', $target);
+                for (i = 1; i <= cols; i++) {
+                    $('thead', $table).append('<th>Column ' + i + '</th>');
+                }
+                for (i = 1; i <= rows; i++) {
+                    var $row = $('<tr></tr>');
+                    for (j = 1; j <= cols; j++) {
+                        $row.append('<td>Cell ' + j + ',' + i + '</td>');
+                    }
+                    $('tbody', $table).append($row);
+                }
+
+                $target.append($table);
+
+                Function('"use strict"; return (' + $code.text() + ')')();
+            });
+        });
+
+    </script>
+</body>
+
+</html>
