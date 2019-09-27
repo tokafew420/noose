@@ -3,22 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's selectable. Supports modern browsers and mobile.">
+    <meta name="description" content="Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's selectable. Supports modern browsers and mobile.">
     <meta name="author" content="Tokafew420">
 
     <title>Noose - Documentation</title>
 
     <link rel="canonical" href="https://tokafew420.github.io/noose/">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row">
-        <a class="navbar-brand mr-0 mr-md-2" href="https://github.com/tokafew420/noose" aria-label="Tokafew420"><img
-                src="https://s.gravatar.com/avatar/75ccde04773b375e13081442ca011832?s=60" /></a>
+        <a class="navbar-brand mr-0 mr-md-2" href="https://github.com/tokafew420/noose" aria-label="Tokafew420">
+            <img src="https://s.gravatar.com/avatar/75ccde04773b375e13081442ca011832?s=60" />
+        </a>
         <div class="navbar-nav-scroll">
             <ul class="navbar-nav bd-navbar-nav flex-row">
                 <li class="nav-item">
@@ -35,27 +34,25 @@
 
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
             <li class="nav-item">
-                <a class="nav-link p-2" href="https://github.com/tokafew420/noose" rel="noopener"
-                    aria-label="GitHub"><svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32"
-                        aria-hidden="true">
+                <a class="nav-link p-2" href="https://github.com/tokafew420/noose" rel="noopener" aria-label="GitHub">
+                    <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
                         <title>GitHub</title>
-                        <path fill-rule="evenodd"
-                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
                         </path>
-                    </svg></a>
+                    </svg>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link p-2" href="https://www.npmjs.com/package/noose" rel="noopener" aria-label="npm"><svg
-                        class="npm-icon" viewBox="0 0 780 250">
+                <a class="nav-link p-2" href="https://www.npmjs.com/package/noose" rel="noopener" aria-label="npm">
+                    <svg class="npm-icon" viewBox="0 0 780 250">
                         <title>npm</title>
-                        <path
-                            d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z">
+                        <path d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z">
                         </path>
-                    </svg></a>
+                    </svg>
+                </a>
             </li>
         </ul>
     </header>
-
 
     <div class="container-fluid">
         <div class="row flex-xl-nowrap">
@@ -64,9 +61,9 @@
             <main class="col-12 col-md-8 col-xl-6" role="main">
                 <h1 class="py-2">Noose</h1>
                 <hr />
-                <p class="mb-2">Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's <a
-                        href="https://jqueryui.com/selectable/" rel="nofollow">selectable</a>. Supports modern browsers
-                    and mobile. <strong>Noose</strong> is kept simple for performance. It's only purpose is to calculate
+                <p class="mb-2">
+                    Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's <a href="https://jqueryui.com/selectable/">selectable</a>.
+                    Supports modern browsers and mobile. <span class="code">Noose</span> is kept simple for performance. It's only purpose is to calculate
                     the region to draw and then determine the elements to mark as selected. Styling is left to the user.
                 </p>
 
@@ -76,41 +73,34 @@
                     <section>
                         <h3 class="py-2" id="installation">Installation</h3>
                         <p>Download or install from git or npm.</p>
-                        <pre class="code-block">
+                        <pre class="prettyprint lang-sh">
 npm -i noose
 git clone https://github.com/tokafew420/noose.git
-
 </pre>
                         <p>or</p>
                         <p>Use a CDN (<a href="https://www.jsdelivr.com/">jsDelivr</a>).</p>
-                        <pre class="code-block">
+                        <pre class="prettyprint lang-html">
 &lt;script src="https://cdn.jsdelivr.net/npm/noose/dist/noose.min.js"&gt;&lt;/script&gt;
-
 </pre>
                     </section>
                     <section>
                         <h3 class="py-2" id="distribution">Distribution</h3>
                         <p>These files are available in the distribution directory.</p>
                         <ul>
-                            <li><a href="https://www.jsdelivr.com/npm/noose/dist/noose.js">noose.js</a> - ES6 source
-                                file</li>
-                            <li><a href="https://www.jsdelivr.com/npm/noose/dist/noose.min.js">noose.min.js</a> -
-                                Minified ES6 source file</li>
-                            <li><a href="https://www.jsdelivr.com/npm/noose/dist/noose.es5.js">noose.es5.js</a> -
-                                Transpiled ES5 source file</li>
-                            <li><a href="https://www.jsdelivr.com/npm/noose/dist/noose.es5.min.js">noose.es5.min.js</a>
-                                - Minified transpiled ES5 source file</li>
+                            <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.js">noose.js</a> - ES6 source file</li>
+                            <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.min.js">noose.min.js</a> - Minified ES6 source file</li>
+                            <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.js">noose.es5.js</a> - Transpiled ES5 source file</li>
+                            <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.min.js">noose.es5.min.js</a> - Minified transpiled ES5 source file</li>
                         </ul>
                     </section>
                     <section>
                         <h3 class="py-2" id="basic-usage">Basic Usage</h3>
-                        <p>Initialize <span class="code">Noose</span> with default options by passing in a valid css
-                            selector or a reference to a <span class="code"><a
-                                    href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>.
+                        <p>
+                            Initialize <span class="code">Noose</span> with default options by passing in a valid css
+                            selector or a reference to a <span class="code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>.
                         </p>
-                        <pre class="code-block">
+                        <pre class="prettyprint lang-js">
 var noose = new Noose('.my-container');
-
 </pre>
                         <p><a href="./examples.html#simple-initialization">See example</a></p>
                     </section>
@@ -120,23 +110,49 @@ var noose = new Noose('.my-container');
                     <h2 class="py-2" id="options">Options</h2>
                     <hr />
                     <section>
+                        <h3 class="py-2" id="option-classes">classes</h3>
+                        <p>
+                            <i>object</i> - A hash of classes to apply.
+                            <ul>
+                                <li><span class="code">noose</span> <i>string</i> - Class is added to the noose. Default is <span class="code">'noose'</span>.</li>
+                                <li><span class="code">selected</span> <i>string</i> - Class is applied to selected elements. Default is <span class="code">'selected'</span>.</li>
+                            </ul>
+                        </p>
+                        <p><a href="./examples.html#option-classes">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-container">container</h3>
+                        <p>
+                            <i>string | Element</i> - Specify the containing parent element for the noose. Default is <span class="code">'body'</span>.
+                        </p>
+                        <p>This option is an alternative way initialize noose.</p>
+                        <pre class="prettyprint lang-js">
+var noose = new Noose({
+    container: '.my-container'
+});
+</pre>
+                    </section>
+                    <section>
                         <h3 class="py-2" id="option-mode">mode</h3>
-                        <p><i>string</i> - Specify the selection criteria. There are 2 possible values. <ul>
-                                <li><span class="code">fit</span> - The candidate element must fit entirely inside the
-                                    noose region.</li>
-                                <li><span class="code">touch</span> - Any part of the candidate element is touching the
-                                    noose region.</li>
-                            </ul> Default is <span class="code">touch</span>.</p>
+                        <p><i>string</i> - Specify the selection criteria. There are 2 possible values.
+                            <ul>
+                                <li><span class="code">fit</span> - The candidate element must fit entirely inside the noose region.</li>
+                                <li><span class="code">touch</span> - Any part of the candidate element is touching the noose region.</li>
+                            </ul>
+                            Default is <span class="code">'touch'</span>.</p>
                         <p><a href="./examples.html#option-mode-fit">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-select">select</h3>
-                        <p><i>string</i> - Specify the selector for selecting child elements. Default is <span
-                                class="code">*</span>.</p>
+                        <p>
+                            <i>string</i> - Specify the selector for selecting child elements. Default is <span class="code">*</span>.
+                        </p>
                         <p>This is recommended to narrow the scope of what is selectable.</p>
                         <p><a href="./examples.html#option-select">See example</a></p>
-                        <p>Setting this value to <span class="code">false</span> will bypass the selection process. Do
-                            this if you don't care for selecting elements but want the noose to be drawn.</p>
+                        <p>
+                            Setting this value to <span class="code">false</span> will bypass the selection process. Do
+                            this if you don't care for selecting elements but want the noose to be drawn.
+                        </p>
                         <p><a href="./examples.html#option-select-false">See example</a></p>
                     </section>
                 </section>
@@ -158,6 +174,8 @@ var noose = new Noose('.my-container');
                     </li>
                     <li class="toc-entry nav-item"><a href="#options">Options</a>
                         <ul>
+                            <li class="toc-entry nav-item"><a href="#option-classes">classes</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-container">container</a></li>
                             <li class="toc-entry nav-item"><a href="#option-mode">mode</a></li>
                             <li class="toc-entry nav-item"><a href="#option-select">select</a></li>
                         </ul>
@@ -168,9 +186,9 @@ var noose = new Noose('.my-container');
     </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
 
     <script>
         // Smooth scrolling using jQuery easing
@@ -184,7 +202,7 @@ var noose = new Noose('.my-container');
                 if ($target.length) {
                     $('html, body').animate({
                         scrollTop: $target.offset().top - 86
-                    }, 1000, 'easeInOutExpo');
+                    }, 500, 'easeInOutExpo');
 
                     $('.toc-entry', $this.closest('.toc')).removeClass('active').find('.sr-only').remove();
                     $this.closest('.toc-entry').addClass('active').find('a').append(
