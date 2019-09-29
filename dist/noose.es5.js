@@ -11,7 +11,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /**
  * Noose
  * 
- * version: 1.1.2
+ * version: 1.1.3
  */
 (function (factory, window, document) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
@@ -32,13 +32,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
   var defaults = {
-    // Containing element for the noose
-    container: 'body',
     // Classes for styling
     classes: {
-      noose: '',
+      noose: 'noose',
       selected: 'selected'
     },
+    // Containing element for the noose
+    container: 'body',
     // Whether the noose is enabled
     enabled: true,
     // The selection mode, part or whole
@@ -72,19 +72,19 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
       var self = this; // Parse arguments
 
-      if (_typeof(container) === 'object' && container != null && !(container instanceof Element)) {
+      if (_typeof(container) === 'object' && container != null && !(container instanceof HTMLElement)) {
         opts = container;
         container = null;
       }
 
       opts = self.opts = Object.assign({}, defaults, opts); // Container must be position (anything but static)
 
-      if (typeof container === 'string' || container instanceof Element) {
+      if (typeof container === 'string' || container instanceof HTMLElement) {
         opts.container = container;
       } // Get containers
 
 
-      if (opts.container instanceof Element) {
+      if (opts.container instanceof HTMLElement) {
         self.containers = [opts.container];
       } else if (typeof opts.container === 'string') {
         self.containers = document.querySelectorAll(opts.container);
@@ -97,7 +97,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         // Relative to document top left origin
         pointer: {
           start: null,
-          end: null // The current/end position of the mouse/touch
+          end: {} // The current/end position of the mouse/touch
 
         },
         // Relative to container
@@ -112,11 +112,11 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
       var noose = self.noose = document.createElement('div');
       noose.style.position = 'absolute';
-      noose.style.zIndex = self.opts.style.zIndex;
-      noose.style.border = self.opts.style.border;
+      noose.style.zIndex = opts.style.zIndex;
+      noose.style.border = opts.style.border;
 
       if (opts.classes.noose) {
-        noose.classList.add(self.opts.classes.noose);
+        noose.classList.add(opts.classes.noose);
       }
 
       var started = false; // Flag for noose-ing started
@@ -124,56 +124,56 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var throttled = false;
 
       self._onStart = function (e) {
-        if (self.opts.enabled && (!started || e.currentTarget !== self.currentTarget) && (e.type !== 'mousedown' || e.which === 1)) {
+        if (opts.enabled && (!started || e.currentTarget !== self.currentTarget) && (e.type !== 'mousedown' || e.which === 1)) {
           started = true;
-          self.currentTarget = e.currentTarget; // Initialize container values
+          var element = self.currentTarget = e.currentTarget;
+          var cCoors = self.coors.container;
+          var pCoors = self.coors.pointer;
+          var nCoors = self.coors.noose; // Initialize container values
 
-          var style = window.getComputedStyle(self.currentTarget);
+          var style = window.getComputedStyle(element);
 
           if (style.position === 'static') {
             console.warn('Container is not a positioned element. This may cause issues positioning the noose and/or selecting elements.');
-          }
+          } // Does the container have scrollbars
 
-          var container = self.coors.container;
-          var pointer = self.coors.pointer;
-          var noose = self.coors.noose; // Does the container have scrollbars
 
-          if (self.opts.scroll > 0 && self.opts.scrollEdge > 0) {
-            container.scrollX = (style.overflowX === 'auto' || style.overflowX === 'scroll') && self.currentTarget.scrollHeight > self.currentTarget.clientHeight;
-            container.scrollY = (style.overflowY === 'auto' || style.overflowY === 'scroll') && self.currentTarget.scrollWidth > self.currentTarget.clientWidth;
+          if (opts.scroll > 0 && opts.scrollEdge > 0) {
+            cCoors.scrollX = (style.overflowX === 'auto' || style.overflowX === 'scroll') && element.scrollHeight > element.clientHeight;
+            cCoors.scrollY = (style.overflowY === 'auto' || style.overflowY === 'scroll') && element.scrollWidth > element.clientWidth;
           } else {
-            container.scrollX = false;
-            container.scrollY = false;
+            cCoors.scrollX = false;
+            cCoors.scrollY = false;
           } // Set the max allowed scroll amount
 
 
-          container.maxScrollY = container.scrollY && self.currentTarget.scrollHeight - self.currentTarget.clientHeight || 0;
-          container.maxScrollX = container.scrollX && self.currentTarget.scrollWidth - self.currentTarget.clientWidth || 0; // Reset start positions
+          cCoors.maxScrollY = cCoors.scrollY && element.scrollHeight - element.clientHeight || 0;
+          cCoors.maxScrollX = cCoors.scrollX && element.scrollWidth - element.clientWidth || 0; // Reset start positions
 
-          pointer.start = null;
-          noose.start = null;
+          pCoors.start = null;
+          nCoors.start = null;
           self.updateContainerPosition().updatePointerPosition(e); // If the scrollbar was click then don't start
 
-          if (self.opts.scrollbar && (container.scrollX && pointer.start.x > container.x + container.w - self.opts.scrollbar || container.scrollY && pointer.start.y > container.y + container.h - self.opts.scrollbar)) {
+          if (opts.scrollbar && (cCoors.scrollX && pCoors.start.x > cCoors.x + cCoors.w - opts.scrollbar || cCoors.scrollY && pCoors.start.y > cCoors.y + cCoors.h - opts.scrollbar)) {
             started = false;
             return;
           }
 
-          self.noose.style.display = 'none';
+          noose.style.display = 'none';
 
-          if (self.opts.start.apply(self, [e, self.coors]) === false || e.defaultPrevented) {
+          if (opts.start.apply(self, [e, self.coors]) === false) {
             started = false;
             return;
           }
 
-          self.currentTarget.appendChild(self.noose);
+          element.appendChild(noose);
         }
       };
 
       self._onMove = function (e) {
-        if (self.opts.enabled) {
+        if (opts.enabled) {
           if (started && e.currentTarget === self.currentTarget) {
-            e.preventDefault();
+            e.cancelable && e.preventDefault();
 
             if (e.type !== 'scroll') {
               self.updatePointerPosition(e);
@@ -181,26 +181,27 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
             self.updateContainerPosition().updateNoosePosition(); // Draw noose
 
-            var top = self.coors.noose.top;
-            var bottom = self.coors.noose.bottom;
-            self.noose.style.left = top.x + 'px';
-            self.noose.style.top = top.y + 'px';
-            self.noose.style.width = bottom.x - top.x + 'px';
-            self.noose.style.height = bottom.y - top.y + 'px';
-            self.noose.style.display = 'block'; // Scroll container
+            var nTop = self.coors.noose.top;
+            var nBottom = self.coors.noose.bottom;
+            noose.style.left = nTop.x + 'px';
+            noose.style.top = nTop.y + 'px';
+            noose.style.width = nBottom.x - nTop.x + 'px';
+            noose.style.height = nBottom.y - nTop.y + 'px';
+            noose.style.display = 'block'; // Scroll container
 
-            var container = self.coors.container;
-            var pointer = self.coors.pointer.end;
-            if (container.scrollY && pointer.y - container.y < 10) self.currentTarget.scrollTop -= self.opts.scroll;else if (container.scrollY && self.currentTarget.scrollTop < container.maxScrollY && container.y + container.h - pointer.y < 10) self.currentTarget.scrollTop += self.opts.scroll;else if (container.scrollX && pointer.x - container.x < 10) self.currentTarget.scrollLeft -= self.opts.scroll;else if (container.scrollX && self.currentTarget.scrollLeft < container.maxScrollX && container.x + container.w - pointer.x < 10) self.currentTarget.scrollLeft += self.opts.scroll; // Compute selection
+            var element = self.currentTarget;
+            var cCoors = self.coors.container;
+            var pEnd = self.coors.pointer.end;
+            if (cCoors.scrollY && pEnd.y - cCoors.y < opts.scrollEdge) element.scrollTop -= opts.scroll;else if (cCoors.scrollY && element.scrollTop < cCoors.maxScrollY && cCoors.y + cCoors.h - pEnd.y < opts.scrollEdge) element.scrollTop += opts.scroll;else if (cCoors.scrollX && pEnd.x - cCoors.x < opts.scrollEdge) element.scrollLeft -= opts.scroll;else if (cCoors.scrollX && element.scrollLeft < cCoors.maxScrollX && cCoors.x + cCoors.w - pEnd.x < opts.scrollEdge) element.scrollLeft += opts.scroll; // Compute selection
 
-            if (self.opts.throttle) {
+            if (opts.throttle) {
               // Throttle calls to compute
               if (!throttled) {
                 throttled = true;
                 setTimeout(function () {
                   self.compute();
                   throttled = false;
-                }, self.opts.throttle);
+                }, opts.throttle);
               }
             } else {
               self.compute();
@@ -217,22 +218,25 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             self.updateContainerPosition().updatePointerPosition(e).updateNoosePosition();
             self.compute();
             setTimeout(function () {
-              self.opts.stop.apply(self, [e, self.coors, self.selected]);
+              opts.stop.apply(self, [e, self.coors, self.selected]);
             }, 0);
-            self.currentTarget.removeChild(self.noose);
+            self.currentTarget.removeChild(noose);
           }
         }
       }; // Register handlers
 
 
       Array.prototype.forEach.call(self.containers, function (container) {
+        // Fixing chrome mobile touch event issue
+        // https://developers.google.com/web/updates/2017/01/scrolling-intervention
         container.addEventListener('mousedown', self._onStart);
-        container.addEventListener('touchstart', self._onStart);
+        container.addEventListener('touchstart', self._onStart, false);
         container.addEventListener('mousemove', self._onMove);
-        container.addEventListener('touchmove', self._onMove);
+        container.addEventListener('touchmove', self._onMove, false);
         container.addEventListener('scroll', self._onMove);
         container.addEventListener('mouseup', self._onEnd);
-        container.addEventListener('touchend', self._onEnd);
+        container.addEventListener('touchend', self._onEnd, false);
+        container.noose = self;
       });
       return self;
     }
@@ -255,6 +259,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
           container.removeEventListener('scroll', self._onMove);
           container.removeEventListener('mouseup', self._onEnd);
           container.removeEventListener('touchend', self._onEnd);
+          delete container.noose;
         });
         return self;
       }
@@ -267,14 +272,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }, {
       key: "updateContainerPosition",
       value: function updateContainerPosition() {
-        var container = this.currentTarget;
-        var containerCoors = this.coors.container;
-        var rect = container.getBoundingClientRect(); // Get position relative to the document's top left origin
+        var cCoors = this.coors.container;
+        var rect = this.currentTarget.getBoundingClientRect(); // Get position relative to the document's top left origin
 
-        containerCoors.x = rect.left + window.pageXOffset;
-        containerCoors.y = rect.top + window.pageYOffset;
-        containerCoors.w = rect.width;
-        containerCoors.h = rect.height;
+        cCoors.x = rect.left + window.pageXOffset;
+        cCoors.y = rect.top + window.pageYOffset;
+        cCoors.w = rect.width;
+        cCoors.h = rect.height;
         return this;
       }
       /**
@@ -287,18 +291,19 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       key: "updatePointerPosition",
       value: function updatePointerPosition(e) {
         var root = e && e.touches && e.touches[0] || e;
-        var pointer = this.coors.pointer;
+        var pCoors = this.coors.pointer;
 
         if (root && typeof root.pageX === 'number') {
           // Get position relative to the document's top left origin
-          var pos = {
+          // Current position is always end
+          pCoors.end = {
             x: root.pageX,
             y: root.pageY
           }; // Keep start static
 
-          if (!pointer.start) pointer.start = pos; // Current position is always end
-
-          pointer.end = pos;
+          if (!pCoors.start) {
+            pCoors.start = pCoors.end;
+          }
         }
 
         return this;
@@ -312,32 +317,33 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }, {
       key: "updateNoosePosition",
       value: function updateNoosePosition() {
-        var currentTarget = this.currentTarget;
-        var pointer = this.coors.pointer;
-        var container = this.coors.container;
-        var noose = this.coors.noose; // Pointer and container are both relative to document top left origin.
+        var element = this.currentTarget;
+        var pCoors = this.coors.pointer;
+        var cCoors = this.coors.container;
+        var nCoors = this.coors.noose; // Pointer and container are both relative to document top left origin.
         // The noose is positioned absolute relative to the container. So that's
         // (pointer - container), and also account for the container's scroll position.
 
-        if (!noose.start) {
-          // Keep start position static
-          noose.start = {
-            x: pointer.start.x - container.x + currentTarget.scrollLeft,
-            y: pointer.start.y - container.y + currentTarget.scrollTop
-          };
-        }
+        var endX = Math.max(pCoors.end.x - cCoors.x + element.scrollLeft, 0);
+        var endY = Math.max(pCoors.end.y - cCoors.y + element.scrollTop, 0);
 
-        var endX = pointer.end.x - container.x + currentTarget.scrollLeft;
-        var endY = pointer.end.y - container.y + currentTarget.scrollTop; // Determine top and bottom of the noose
+        if (!nCoors.start) {
+          // Keep start position static
+          nCoors.start = {
+            x: endX,
+            y: endY
+          };
+        } // Determine top and bottom of the noose
         // top < bottom
 
-        noose.top = {
-          x: Math.min(noose.start.x, endX),
-          y: Math.min(noose.start.y, endY)
+
+        nCoors.top = {
+          x: Math.min(nCoors.start.x, endX),
+          y: Math.min(nCoors.start.y, endY)
         };
-        noose.bottom = {
-          x: Math.max(noose.start.x, endX),
-          y: Math.max(noose.start.y, endY)
+        nCoors.bottom = {
+          x: Math.min(Math.max(nCoors.start.x, endX), element.scrollWidth),
+          y: Math.min(Math.max(nCoors.start.y, endY), element.scrollHeight)
         };
         return this;
       }
@@ -355,14 +361,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         if (self.opts.select) {
           var className = self.opts.classes.selected;
           var elements = self.currentTarget.querySelectorAll(self.opts.select);
-          var top = self.coors.noose.top;
-          var bottom = self.coors.noose.bottom;
+          var nTop = self.coors.noose.top;
+          var nBottom = self.coors.noose.bottom;
           var offsetX = self.coors.container.x;
           var offsetY = self.coors.container.y;
           self.selected = [];
           Array.prototype.forEach.call(elements, function (element) {
-            if (element === self.noose) return;
-            var include = false; // Get absolution position of element relative to container
+            if (element === self.noose) return; // Don't include noose
+
+            var include = false; // Get absolute position of element relative to container
 
             var rect = element.getBoundingClientRect();
             var topX = rect.left + window.pageXOffset - offsetX + self.currentTarget.scrollLeft;
@@ -372,10 +379,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
             if (self.opts.mode === 'fit') {
               // Include is entire element is within noose
-              include = top.x <= topX && top.y <= topY && bottom.x >= bottomX && bottom.y >= bottomY;
+              include = nTop.x <= topX && nTop.y <= topY && nBottom.x >= bottomX && nBottom.y >= bottomY;
             } else {
               // Include if partially touching
-              include = !(top.x > bottomX || top.y > bottomY || bottom.x < topX || bottom.y < topY);
+              include = !(nTop.x > bottomX || nTop.y > bottomY || nBottom.x < topX || nBottom.y < topY);
             }
 
             if (include) {
@@ -396,7 +403,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }], [{
       key: "version",
       get: function get() {
-        return '1.1.2';
+        return '1.1.3';
       }
     }]);
 
