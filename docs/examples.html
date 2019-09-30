@@ -232,10 +232,11 @@ new Noose('#option-mode-fit', {
                         </div>
                     </div>
                 </section>
-                <h3 id="option-scroll-example">scroll and scrollEdge</h3>
+                <h3 id="option-scroll-example">scroll, scrollEdge, and scrollbar</h3>
                 <section class="example mb-4">
                     <p>
-                        By default, the container will be scrolled when the noose is moved over the scroll edge area.
+                        By default, the container will be scrolled when the noose is moved over the scroll edge area. Clicking on the scrollbar will
+                        not activate the noose.
                     </p>
                     <div id="option-scroll" class="example-target no-select p-2 mb-2" style="max-height: 300px; overflow: auto; position: relative;" data-columns="20" data-rows="100">
                         <table class="table table-sm table-collapsed table-striped table-bordered">
@@ -256,7 +257,8 @@ new Noose('#option-mode-fit', {
 new Noose('#option-scroll', {
     select: 'td',
     scroll: 5,
-    scrollEdge: 17  // Size of scrollbar
+    scrollEdge: 17,
+    scrollbar: 17   // Size of scrollbar
 })
 </pre>
                         </div>
@@ -385,7 +387,7 @@ new Noose('#option-start-stop', {
         $('#option-start-stop-result').text('Selecting...');
     },
     stop: function(e, coors, selected) {
-        $('#option-start-stop-result').text(selected.length + ' cells selected');
+        $('#option-start-stop-result').text(selected.length + ' cell(s) selected');
     }
 })
 </pre>
