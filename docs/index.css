@@ -42,24 +42,25 @@
   padding-bottom: 1.5rem;
 }
 
-.toc-entry a {
+.toc nav {
+  display: block;
+}
+
+.toc nav nav {
+  padding-left: 14px;
+}
+
+.toc a {
   display: block;
   padding: .125rem 1.5rem;
   color: #77757a;
 }
 
 .section-nav {
-  padding-left: 0;
   border-left: 1px solid #eee;
-  list-style: none;
 }
 
-.section-nav ul {
-  padding-left: 1rem;
-  list-style: none;
-}
-
-.section-nav ul li.active {
+.toc a.active {
   font-weight: bold;
 }
 

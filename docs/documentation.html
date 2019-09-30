@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#toc" data-offset="86">
     <header class="navbar navbar-expand navbar-dark flex-column flex-md-row">
         <a class="navbar-brand mr-0 mr-md-2" href="https://github.com/tokafew420/noose" aria-label="Tokafew420">
             <img src="https://s.gravatar.com/avatar/75ccde04773b375e13081442ca011832?s=60" />
@@ -233,32 +233,30 @@ var noose = new Noose({
                 </section>
             </main>
 
-            <div class="d-none d-md-block col-md-4 col-xl-3 toc">
-                <ul class="section-nav">
-                    <li class="toc-entry nav-item"><a href="#getting-started">Getting started</a>
-                        <ul>
-                            <li class="toc-entry nav-item"><a href="#installation">Installation</a></li>
-                            <li class="toc-entry nav-item"><a href="#distribution">Distribution</a></li>
-                            <li class="toc-entry nav-item"><a href="#basic-usage">Basic Usage</a></li>
-                        </ul>
-                    </li>
-                    <li class="toc-entry nav-item"><a href="#options">Options</a>
-                        <ul>
-                            <li class="toc-entry nav-item"><a href="#option-classes">classes</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-container">container</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-enabled">enabled</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-mode">mode</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-scroll">scroll</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-scrollEdge">scrollEdge</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-scrollbar">scrollbar</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-select">select</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-start">start</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-stop">stop</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-style">style</a></li>
-                            <li class="toc-entry nav-item"><a href="#option-throttle">throttle</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div id="toc" class="d-none d-md-block col-md-4 col-xl-3 toc">
+                <nav class="section-nav nav">
+                    <a class="nav-link" href="#getting-started">Getting started</a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#installation">Installation</a>
+                        <a class="nav-link" href="#distribution">Distribution</a>
+                        <a class="nav-link" href="#basic-usage">Basic Usage</a>
+                    </nav>
+                    <a class="nav-link" href="#options">Options</a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#option-classes">classes</a>
+                        <a class="nav-link" href="#option-container">container</a>
+                        <a class="nav-link" href="#option-enabled">enabled</a>
+                        <a class="nav-link" href="#option-mode">mode</a>
+                        <a class="nav-link" href="#option-scroll">scroll</a>
+                        <a class="nav-link" href="#option-scrollEdge">scrollEdge</a>
+                        <a class="nav-link" href="#option-scrollbar">scrollbar</a>
+                        <a class="nav-link" href="#option-select">select</a>
+                        <a class="nav-link" href="#option-start">start</a>
+                        <a class="nav-link" href="#option-stop">stop</a>
+                        <a class="nav-link" href="#option-style">style</a>
+                        <a class="nav-link" href="#option-throttle">throttle</a>
+                    </nav>
+                </nav>
             </div>
         </div>
     </div>
@@ -266,6 +264,7 @@ var noose = new Noose({
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
 
     <script>
@@ -280,10 +279,6 @@ var noose = new Noose({
                     $('html, body').animate({
                         scrollTop: $target.offset().top - 86
                     }, 500, 'easeInOutExpo');
-
-                    $('.toc-entry', $this.closest('.toc')).removeClass('active').find('.sr-only').remove();
-                    $this.closest('.toc-entry').addClass('active').find('a').append(
-                        '<span class="sr-only">(current)</span>');
 
                     return false;
                 }
