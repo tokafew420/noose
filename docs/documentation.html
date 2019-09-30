@@ -102,7 +102,7 @@ git clone https://github.com/tokafew420/noose.git
                         <pre class="prettyprint lang-js">
 var noose = new Noose('.my-container');
 </pre>
-                        <p><a href="./examples.html#simple-initialization">See example</a></p>
+                        <p><a href="./examples.html#initialization-example">See example</a></p>
                     </section>
                 </section>
 
@@ -113,12 +113,12 @@ var noose = new Noose('.my-container');
                         <h3 class="py-2" id="option-classes">classes</h3>
                         <p>
                             <i>object</i> - A hash of classes to apply.
-                            <ul>
-                                <li><span class="code">noose</span> <i>string</i> - Class is added to the noose. Default is <span class="code">'noose'</span>.</li>
-                                <li><span class="code">selected</span> <i>string</i> - Class is applied to selected elements. Default is <span class="code">'selected'</span>.</li>
-                            </ul>
                         </p>
-                        <p><a href="./examples.html#option-classes">See example</a></p>
+                        <ul>
+                            <li><span class="code">noose</span> <i>string</i> - Class is added to the noose. Default is <span class="code">'noose'</span>.</li>
+                            <li><span class="code">selected</span> <i>string</i> - Class is applied to selected elements. Default is <span class="code">'selected'</span>.</li>
+                        </ul>
+                        <p><a href="./examples.html#option-classes-example">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-container">container</h3>
@@ -133,33 +133,95 @@ var noose = new Noose({
 </pre>
                     </section>
                     <section>
+                        <h3 class="py-2" id="option-enabled">enabled</h3>
+                        <p>
+                            <i>boolean</i> - Enable or disable the noose. Default is <span class="code">true</span>.
+                        </p>
+                    </section>
+                    <section>
                         <h3 class="py-2" id="option-mode">mode</h3>
-                        <p><i>string</i> - Specify the selection criteria. There are 2 possible values.
-                            <ul>
-                                <li><span class="code">fit</span> - The candidate element must fit entirely inside the noose region.</li>
-                                <li><span class="code">touch</span> - Any part of the candidate element is touching the noose region.</li>
-                            </ul>
-                            Default is <span class="code">'touch'</span>.</p>
-                        <p><a href="./examples.html#option-mode-fit">See example</a></p>
+                        <p><i>string</i> - Specify the selection criteria. There are 2 possible values.</p>
+                        <ul>
+                            <li><span class="code">fit</span> - The candidate element must fit entirely inside the noose region.</li>
+                            <li><span class="code">touch</span> - Any part of the candidate element is touching the noose region.</li>
+                        </ul>
+                        <p>Default is <span class="code">'touch'</span>.</p>
+                        <p><a href="./examples.html#option-mode-fit-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-scroll">scroll</h3>
+                        <p>
+                            <i>number</i> - When auto scrolling, this is the amount of pixels to scroll. Set to <span class="code">0</span> to disable auto scrolling.
+                            Default is <span class="code">10</span>.
+                        </p>
+                        <p><a href="./examples.html#option-scroll-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-scrollEdge">scrollEdge</h3>
+                        <p>
+                            <i>number</i> - The offset amount from the container's edge where auto scrolling will be initiated. Set to <span class="code">0</span>
+                            to disable auto scrolling. Default is <span class="code">10</span>.
+                        </p>
+                        <p><a href="./examples.html#option-scroll-example">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-select">select</h3>
                         <p>
-                            <i>string</i> - Specify the selector for selecting child elements. Default is <span class="code">*</span>.
+                            <i>string</i> - Specify the selector for selecting child elements. Default is <span class="code">'*'</span>.
                         </p>
                         <p>This is recommended to narrow the scope of what is selectable.</p>
-                        <p><a href="./examples.html#option-select">See example</a></p>
+                        <p><a href="./examples.html#option-select-example">See example</a></p>
                         <p>
                             Setting this value to <span class="code">false</span> will bypass the selection process. Do
                             this if you don't care for selecting elements but want the noose to be drawn.
                         </p>
-                        <p><a href="./examples.html#option-select-false">See example</a></p>
+                        <p><a href="./examples.html#option-select-false-example">See example</a></p>
                     </section>
-                </section>
-
-                <hr />
-                <section>
-                    <h2 class="pb-5" id="options">More coming soon!!</h2>
+                    <section>
+                        <h3 class="py-2" id="option-start">start</h3>
+                        <p>
+                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> )</i> - Called on start of noose. Return <span class="code">false</span> to prevent noosing.
+                        </p>
+                        <ul>
+                            <li>The context is the noose instance.</li>
+                            <li><span class="code">event</span> - The event the initiated the noosing.</li>
+                            <li><span class="code">coordinates</span> - The object containing the coordinates used in the noose calculations.</li>
+                        </ul>
+                        <p><a href="./examples.html#option-start-stop-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-stop">stop</h3>
+                        <p>
+                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> , <span class="code">selected</span> )</i> - Called when noose is complete.
+                        </p>
+                        <ul>
+                            <li>The context is the noose instance.</li>
+                            <li><span class="code">event</span> - The event the initiated the noosing.</li>
+                            <li><span class="code">coordinates</span> - The object containing the coordinates used in the noose calculations.</li>
+                            <li><span class="code">selected</span> - The selected elements.</li>
+                        </ul>
+                        <p><a href="./examples.html#option-start-stop-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-style">style</h3>
+                        <p>
+                            <i>object</i> - A hash containing the style for the noose.
+                        </p>
+                        <ul>
+                            <li><span class="code">border</span> - The border style. Default is <span class="code">'1px dotted #000'</span></li>
+                            <li><span class="code">zIndex</span> - The z-index. Default is <span class="code">1000</span></li>
+                        </ul>
+                        <p><a href="./examples.html#option-style-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-throttle">throttle</h3>
+                        <p>
+                            <i>number</i> - The delay (in ms) between computations of the selected elements. Setting this value to <span class="code">0</span>
+                            will disable throttling. Default is <span class="code">200</span>.
+                        </p>
+                        <p>Adjust for performace by increasing or decreasing this value depending on the number of elements you have.</p>
+                        <p><a href="./examples.html#option-throttle-example">See example</a></p>
+                    </section>
                 </section>
             </main>
 
@@ -176,8 +238,15 @@ var noose = new Noose({
                         <ul>
                             <li class="toc-entry nav-item"><a href="#option-classes">classes</a></li>
                             <li class="toc-entry nav-item"><a href="#option-container">container</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-enabled">enabled</a></li>
                             <li class="toc-entry nav-item"><a href="#option-mode">mode</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-scroll">scroll</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-scrollEdge">scrollEdge</a></li>
                             <li class="toc-entry nav-item"><a href="#option-select">select</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-start">start</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-stop">stop</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-style">style</a></li>
+                            <li class="toc-entry nav-item"><a href="#option-throttle">throttle</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -195,8 +264,7 @@ var noose = new Noose({
         $('.toc a[href*="#"]:not([href="#"])').click(function (e) {
             e.preventDefault();
             var $this = $(this);
-            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location
-                .hostname === this.hostname) {
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                 var $target = $(this.hash);
                 $target = $target.length ? $target : $('[name=' + this.hash.slice(1) + ']');
                 if ($target.length) {

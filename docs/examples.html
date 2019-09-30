@@ -31,6 +31,16 @@
             background-color: rgba(26, 247, 153, 0.5);
         }
 
+        h2::before,
+        h3::before {
+            display: block;
+            content: " ";
+            margin-top: -86px;
+            height: 86px;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
     </style>
 </head>
 
@@ -80,11 +90,11 @@
             <main class="col-12" role="main">
                 <h1>Noose examples</h1>
                 <p class="lead mb-5">Examples of the noose tool and various options/use cases.</p>
-                <h2 id="simple-initialization">Initialization</h2>
+                <h2 id="initialization-example">Initialization</h2>
                 <hr />
                 <section class="example mb-4">
                     <p>Simple initialization using the default options.</p>
-                    <div id="simple-initialization" class="example-target no-select p-2 mb-2" data-columns="5" data-rows="10">
+                    <div id="simple-initialization" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
                         <table class="table table-sm table-collapsed table-striped table-bordered">
                             <thead></thead>
                             <tbody></tbody>
@@ -120,14 +130,14 @@
                     </div>
                 </section>
 
-                <h2>Options</h2>
+                <h2 id="option-example">Options</h2>
                 <hr />
-                <h3>classes</h3>
+                <h3 id="option-classes-example">classes</h3>
                 <section class="example mb-4">
                     <p>
                         Use <span class="code">classes</span> option to apply custom styling.
                     </p>
-                    <div id="option-classes" class="example-target no-select p-2 mb-2" data-columns="5" data-rows="10">
+                    <div id="option-classes" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
                         <table class="table table-sm table-collapsed table-striped table-bordered table-dark">
                             <thead></thead>
                             <tbody></tbody>
@@ -176,13 +186,13 @@ new Noose('#option-classes', {
                         </div>
                     </div>
                 </section>
-                <h3>mode</h3>
+                <h3 id="option-mode-fit-example">mode</h3>
                 <section class="example mb-4">
                     <p>
                         Setting <code class="code">mode</code> to <code class="code">'fit'</code> will not select the
                         element until the entire element fit within the noose.
                     </p>
-                    <div id="option-mode-fit" class="example-target no-select p-2 mb-2" data-columns="5" data-rows="10">
+                    <div id="option-mode-fit" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
                         <table class="table table-sm table-collapsed table-striped table-bordered">
                             <thead></thead>
                             <tbody></tbody>
@@ -222,10 +232,57 @@ new Noose('#option-mode-fit', {
                         </div>
                     </div>
                 </section>
-                <h3>select</h3>
+                <h3 id="option-scroll-example">scroll and scrollEdge</h3>
+                <section class="example mb-4">
+                    <p>
+                        By default, the container will be scrolled when the noose is moved over the scroll edge area.
+                    </p>
+                    <div id="option-scroll" class="example-target no-select p-2 mb-2" style="max-height: 300px; overflow: auto; position: relative;" data-columns="20" data-rows="100">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" id="option-scroll-js-tab" data-toggle="tab" href="#option-scroll-js" role="tab" aria-controls="option-scroll-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="option-scroll-css-tab" data-toggle="tab" href="#option-scroll-css" role="tab" aria-controls="option-scroll-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="option-scroll-html-tab" data-toggle="tab" href="#option-scroll-html" role="tab" aria-controls="option-scroll-html" aria-selected="false">HTML</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="option-scroll-js" role="tabpanel" aria-labelledby="option-scroll-js-tab">
+                            <pre class="prettyprint lang-js example-code">
+new Noose('#option-scroll', {
+    select: 'td',
+    scroll: 5,
+    scrollEdge: 17  // Size of scrollbar
+})
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-scroll-css" role="tabpanel" aria-labelledby="option-scroll-css-tab">
+                            <pre class="prettyprint lang-css">.selected {
+    background-color: rgba(36, 143, 220, 0.3) !important;
+}
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-scroll-html" role="tabpanel" aria-labelledby="option-scroll-html-tab">
+                            <pre class="prettyprint lang-html">
+&lt;div id="option-scroll" style="max-height: 300px; overflow: auto; position: relative;"&gt;
+    &lt;table&gt;
+        &lt;thead&gt;...&lt;/thead&gt;
+        &lt;tbody&gt;...&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+                </section>
+
+                <h3 id="option-select-example">select</h3>
                 <section class="example mb-4">
                     <p>Select only certain elements by specifying the <code class="code">select</code> option.</p>
-                    <div id="option-select" class="example-target no-select p-2 mb-2" data-columns="5" data-rows="10">
+                    <div id="option-select" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
                         <table class="table table-sm table-collapsed table-striped table-bordered">
                             <thead></thead>
                             <tbody></tbody>
@@ -242,7 +299,7 @@ new Noose('#option-mode-fit', {
                         <div class="tab-pane fade show active" id="option-select-js" role="tabpanel" aria-labelledby="option-select-js-tab">
                             <pre class="prettyprint lang-js example-code">
 new Noose('#option-select', {
-    select: 'td'
+    select: 'tr'
 })
 </pre>
                         </div>
@@ -264,6 +321,7 @@ new Noose('#option-select', {
                         </div>
                     </div>
                 </section>
+                <h3 id="option-select-false-example" style="visibility: hidden;">select</h3>
                 <section class="example mb-4">
                     <p>Disable selection by setting <code class="code">select</code> option to <code class="code">false</code>.
                     </p>
@@ -299,10 +357,150 @@ new Noose('#option-select-false', {
                         </div>
                     </div>
                 </section>
-
-                <hr />
-                <section>
-                    <h2 class="pb-5" id="options">More coming soon!!</h2>
+                <h3 id="option-start-stop-example">start and stop</h3>
+                <section class="example mb-4">
+                    <p>
+                        Handling start and stop events.
+                    </p>
+                    <div id="option-start-stop" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div id="option-start-stop-result" class="p-2 my-2 border"></div>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" id="option-start-stop-js-tab" data-toggle="tab" href="#option-start-stop-js" role="tab" aria-controls="option-start-stop-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="option-start-stop-css-tab" data-toggle="tab" href="#option-start-stop-css" role="tab" aria-controls="option-start-stop-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="option-start-stop-html-tab" data-toggle="tab" href="#option-start-stop-html" role="tab" aria-controls="option-start-stop-html" aria-selected="false">HTML</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="option-start-stop-js" role="tabpanel" aria-labelledby="option-start-stop-js-tab">
+                            <pre class="prettyprint lang-js example-code">
+new Noose('#option-start-stop', {
+    select: 'td',
+    start: function(e, coors) {
+        $('#option-start-stop-result').text('Selecting...');
+    },
+    stop: function(e, coors, selected) {
+        $('#option-start-stop-result').text(selected.length + ' cells selected');
+    }
+})
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-start-stop-css" role="tabpanel" aria-labelledby="option-start-stop-css-tab">
+                            <pre class="prettyprint lang-css">.selected {
+    background-color: rgba(36, 143, 220, 0.3) !important;
+}
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-start-stop-html" role="tabpanel" aria-labelledby="option-start-stop-html-tab">
+                            <pre class="prettyprint lang-html">
+&lt;div id="option-start-stop"&gt;
+    &lt;table&gt;
+        &lt;thead&gt;...&lt;/thead&gt;
+        &lt;tbody&gt;...&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+&lt;div id="option-start-stop-result" class="p-2 my-2 border"&gt;&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+                </section>
+                <h3 id="option-style-example">style</h3>
+                <section class="example mb-4">
+                    <p>
+                        Custom styling of noose.
+                    </p>
+                    <div id="option-style" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" id="option-style-js-tab" data-toggle="tab" href="#option-style-js" role="tab" aria-controls="option-style-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="option-style-css-tab" data-toggle="tab" href="#option-style-css" role="tab" aria-controls="option-style-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="option-style-html-tab" data-toggle="tab" href="#option-style-html" role="tab" aria-controls="option-style-html" aria-selected="false">HTML</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="option-style-js" role="tabpanel" aria-labelledby="option-style-js-tab">
+                            <pre class="prettyprint lang-js example-code">
+new Noose('#option-style', {
+    select: 'td',
+    style: {
+        border: 'dashed 2px red',
+        zIndex: 9999
+    }
+})
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-style-css" role="tabpanel" aria-labelledby="option-style-css-tab">
+                            <pre class="prettyprint lang-css">.selected {
+    background-color: rgba(36, 143, 220, 0.3) !important;
+}
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-style-html" role="tabpanel" aria-labelledby="option-style-html-tab">
+                            <pre class="prettyprint lang-html">
+&lt;div id="option-style"&gt;
+    &lt;table&gt;
+        &lt;thead&gt;...&lt;/thead&gt;
+        &lt;tbody&gt;...&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+                </section>
+                <h3 id="option-throttle-example">throttle</h3>
+                <section class="example mb-4">
+                    <p>
+                        Set throttle to <span class="code">0</span> for no delay. Only do this for small selectable sets.
+                    </p>
+                    <div id="option-throttle" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" id="option-throttle-js-tab" data-toggle="tab" href="#option-throttle-js" role="tab" aria-controls="option-throttle-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="option-throttle-css-tab" data-toggle="tab" href="#option-throttle-css" role="tab" aria-controls="option-throttle-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="option-throttle-html-tab" data-toggle="tab" href="#option-throttle-html" role="tab" aria-controls="option-throttle-html" aria-selected="false">HTML</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="option-throttle-js" role="tabpanel" aria-labelledby="option-throttle-js-tab">
+                            <pre class="prettyprint lang-js example-code">
+new Noose('#option-throttle', {
+    select: 'td',
+    throttle: 0
+})
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-throttle-css" role="tabpanel" aria-labelledby="option-throttle-css-tab">
+                            <pre class="prettyprint lang-css">.selected {
+    background-color: rgba(36, 143, 220, 0.3) !important;
+}
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="option-throttle-html" role="tabpanel" aria-labelledby="option-throttle-html-tab">
+                            <pre class="prettyprint lang-html">
+&lt;div id="option-throttle"&gt;
+    &lt;table&gt;
+        &lt;thead&gt;...&lt;/thead&gt;
+        &lt;tbody&gt;...&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
                 </section>
             </main>
         </div>
@@ -315,8 +513,6 @@ new Noose('#option-select-false', {
     <script src="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.min.js"></script>
     <script>
         $(function () {
-            var body = document.querySelector('body');
-
             $('.example').each(function () {
                 var $example = $(this);
                 var $target = $('.example-target', $example);
@@ -341,6 +537,11 @@ new Noose('#option-select-false', {
 
                 Function('"use strict"; return (' + $code.text() + ')')();
             });
+
+            var $a = $(location.hash);
+            if ($a.length) {
+                $('body')[0].scrollTop = $a.offset().top;
+            }
         });
 
     </script>
