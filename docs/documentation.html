@@ -97,7 +97,7 @@ git clone https://github.com/tokafew420/noose.git
                         <h3 class="py-2" id="basic-usage">Basic Usage</h3>
                         <p>
                             Initialize <span class="code">Noose</span> with default options by passing in a valid css
-                            selector or a reference to a <span class="code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a></span>.
+                            selector or a reference to a <span class="code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a></span>.
                         </p>
                         <pre class="prettyprint lang-js">
 var noose = new Noose('.my-container');
@@ -119,6 +119,14 @@ var noose = new Noose('.my-container');
                             <li><span class="code">selected</span> <i>string</i> - Class is applied to selected elements. Default is <span class="code">'selected'</span>.</li>
                         </ul>
                         <p><a href="./examples.html#option-classes-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-compute">compute</h3>
+                        <p>
+                            <i>boolean</i> - Enable or disable the computing of selected elements. Default is <span class="code">true</span>.
+                        </p>
+                        <p>This is different from <a class="inline-toc" href="#option-select"><span class="code">options.select = false</span></a> as it will still allow for manual calls to <a class="inline-toc" href="#method-compute"><span class="code">compute()</span></a>.</p>
+                        <p><a href="./examples.html#method-compute">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-container">container</h3>
@@ -183,6 +191,7 @@ var noose = new Noose({
                             Setting this value to <span class="code">false</span> will bypass the selection process. Do
                             this if you don't care for selecting elements but want the noose to be drawn.
                         </p>
+                        <p>This is different from <a class="inline-toc" href="#option-compute"><span class="code">options.compute = false</span></a> as it will not attempt to run the selection process because a selector is <span class="code">undefined</span>.</p>
                         <p><a href="./examples.html#option-select-false-example">See example</a></p>
                     </section>
                     <section>
@@ -231,6 +240,28 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-throttle-example">See example</a></p>
                     </section>
                 </section>
+                <section>
+                    <h2 class="py-2" id="methods">Methods</h2>
+                    <hr />
+                    <section>
+                        <h3 class="py-2" id="method-compute">compute</h3>
+                        <p>
+                            Computes the selected elements given the current coordinates. When <a class="inline-toc" href="#option-compute"><span class="code">compute</span></a>
+                            option is disabled, call this to get selected elements.</p>
+                        <p>
+                            Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
+                        </p>
+                        <p><a href="./examples.html#method-compute">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="method-destroy">destroy</h3>
+                        <p>
+                            Destroy and cleanup the current instance.</p>
+                        <p>
+                            Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
+                        </p>
+                    </section>
+                </section>
             </main>
 
             <div id="toc" class="d-none d-md-block col-md-4 col-xl-3 toc">
@@ -244,6 +275,7 @@ var noose = new Noose({
                     <a class="nav-link" href="#options">Options</a>
                     <nav class="nav">
                         <a class="nav-link" href="#option-classes">classes</a>
+                        <a class="nav-link" href="#option-compute">compute</a>
                         <a class="nav-link" href="#option-container">container</a>
                         <a class="nav-link" href="#option-enabled">enabled</a>
                         <a class="nav-link" href="#option-mode">mode</a>
@@ -256,11 +288,17 @@ var noose = new Noose({
                         <a class="nav-link" href="#option-style">style</a>
                         <a class="nav-link" href="#option-throttle">throttle</a>
                     </nav>
+                    <a class="nav-link" href="#methods">Methods</a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#method-compute">compute</a>
+                        <a class="nav-link" href="#method-destroy">destroy</a>
+                    </nav>
                 </nav>
             </div>
         </div>
     </div>
-    </div>
+
+    <div class="footer mt-5"></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -269,7 +307,7 @@ var noose = new Noose({
 
     <script>
         // Smooth scrolling using jQuery easing
-        $('.toc a[href*="#"]:not([href="#"])').click(function (e) {
+        $('.toc a[href*="#"]:not([href="#"]), a.inline-toc[href*="#"]:not([href="#"])').click(function (e) {
             e.preventDefault();
             var $this = $(this);
             if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {

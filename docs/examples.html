@@ -280,7 +280,6 @@ new Noose('#option-scroll', {
                         </div>
                     </div>
                 </section>
-
                 <h3 id="option-select-example">select</h3>
                 <section class="example mb-4">
                     <p>Select only certain elements by specifying the <code class="code">select</code> option.</p>
@@ -504,15 +503,71 @@ new Noose('#option-throttle', {
                         </div>
                     </div>
                 </section>
+
+                <h2 id="method-example">Methods</h2>
+                <hr />
+                <h3 id="method-compute-example">compute</h3>
+                <section class="example mb-4">
+                    <p>
+                        Manually call <span class="code">compute()</span> to select elements.
+                    </p>
+                    <div id="method-compute" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div id="method-compute-result" class="p-2 my-2 border"></div>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" id="method-compute-js-tab" data-toggle="tab" href="#method-compute-js" role="tab" aria-controls="method-compute-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="method-compute-css-tab" data-toggle="tab" href="#method-compute-css" role="tab" aria-controls="method-compute-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="method-compute-html-tab" data-toggle="tab" href="#method-compute-html" role="tab" aria-controls="method-compute-html" aria-selected="false">HTML</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="method-compute-js" role="tabpanel" aria-labelledby="method-compute-js-tab">
+                            <pre class="prettyprint lang-js example-code">
+new Noose('#method-compute', {
+    select: 'td',
+    compute: false,
+    stop: function(e, coors, selected) {
+        this.compute();
+        $('#method-compute-result').text(this.selected.length + ' cell(s) selected');
+    }
+})
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="method-compute-css" role="tabpanel" aria-labelledby="method-compute-css-tab">
+                            <pre class="prettyprint lang-css">
+.selected {
+    background-color: rgba(36, 143, 220, 0.3) !important;
+}
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="method-compute-html" role="tabpanel" aria-labelledby="method-compute-html-tab">
+                            <pre class="prettyprint lang-html">
+&lt;div id="method-compute"&gt;
+    &lt;table&gt;
+        &lt;thead&gt;...&lt;/thead&gt;
+        &lt;tbody&gt;...&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+&lt;div id="method-compute-result" class="p-2 my-2 border"&gt;&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+                </section>
             </main>
         </div>
     </div>
 
+    <div class="footer mt-5"></div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
-    <script src="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.min.js"></script>
+    <script src="../dist/noose.es5.min.js"></script>
     <script>
         $(function () {
             $('.example').each(function () {
