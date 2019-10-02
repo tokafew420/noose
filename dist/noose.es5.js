@@ -11,7 +11,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /**
  * Noose
  * 
- * version: 1.1.3
+ * version: 1.1.4
  */
 (function (factory, window, document) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
@@ -37,6 +37,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       noose: 'noose',
       selected: 'selected'
     },
+    // Enable/disable computing of selected elements
+    compute: true,
     // Containing element for the noose
     container: 'body',
     // Whether the noose is enabled
@@ -77,7 +79,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         container = null;
       }
 
-      opts = self.opts = Object.assign({}, defaults, opts); // Container must be position (anything but static)
+      opts = self.opts = Object.assign({}, defaults, opts); // Container must be positioned (anything but static)
 
       if (typeof container === 'string' || container instanceof HTMLElement) {
         opts.container = container;
@@ -192,19 +194,22 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             var element = self.currentTarget;
             var cCoors = self.coors.container;
             var pEnd = self.coors.pointer.end;
-            if (cCoors.scrollY && pEnd.y - cCoors.y < opts.scrollEdge) element.scrollTop -= opts.scroll;else if (cCoors.scrollY && element.scrollTop < cCoors.maxScrollY && cCoors.y + cCoors.h - pEnd.y < opts.scrollEdge) element.scrollTop += opts.scroll;else if (cCoors.scrollX && pEnd.x - cCoors.x < opts.scrollEdge) element.scrollLeft -= opts.scroll;else if (cCoors.scrollX && element.scrollLeft < cCoors.maxScrollX && cCoors.x + cCoors.w - pEnd.x < opts.scrollEdge) element.scrollLeft += opts.scroll; // Compute selection
+            if (cCoors.scrollY && pEnd.y - cCoors.y < opts.scrollEdge) element.scrollTop -= opts.scroll;else if (cCoors.scrollY && element.scrollTop < cCoors.maxScrollY && cCoors.y + cCoors.h - pEnd.y < opts.scrollEdge) element.scrollTop += opts.scroll;else if (cCoors.scrollX && pEnd.x - cCoors.x < opts.scrollEdge) element.scrollLeft -= opts.scroll;else if (cCoors.scrollX && element.scrollLeft < cCoors.maxScrollX && cCoors.x + cCoors.w - pEnd.x < opts.scrollEdge) element.scrollLeft += opts.scroll;
 
-            if (opts.throttle) {
-              // Throttle calls to compute
-              if (!throttled) {
-                throttled = true;
-                setTimeout(function () {
-                  self.compute();
-                  throttled = false;
-                }, opts.throttle);
+            if (opts.compute) {
+              // Compute selection
+              if (opts.throttle) {
+                // Throttle calls to compute
+                if (!throttled) {
+                  throttled = true;
+                  setTimeout(function () {
+                    self.compute();
+                    throttled = false;
+                  }, opts.throttle);
+                }
+              } else {
+                self.compute();
               }
-            } else {
-              self.compute();
             }
           }
         }
@@ -216,7 +221,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
           if (e.currentTarget === self.currentTarget) {
             self.updateContainerPosition().updatePointerPosition(e).updateNoosePosition();
-            self.compute();
+            opts.compute && self.compute();
             setTimeout(function () {
               opts.stop.apply(self, [e, self.coors, self.selected]);
             }, 0);
@@ -261,6 +266,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
           container.removeEventListener('touchend', self._onEnd);
           delete container.noose;
         });
+        self.noose.remove();
+        self.noose = null;
         return self;
       }
       /**
@@ -403,7 +410,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }], [{
       key: "version",
       get: function get() {
-        return '1.1.3';
+        return '1.1.4';
       }
     }]);
 

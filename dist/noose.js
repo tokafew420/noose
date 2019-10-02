@@ -1,7 +1,7 @@
 /**
  * Noose
  * 
- * version: 1.1.3
+ * version: 1.1.4
  */
 
 (function (factory, window, document) {
@@ -28,6 +28,8 @@
             noose: 'noose',
             selected: 'selected'
         },
+        // Enable/disable computing of selected elements
+        compute: true,
         // Containing element for the noose
         container: 'body',
         // Whether the noose is enabled
@@ -64,7 +66,7 @@
                 container = null;
             }
             opts = self.opts = Object.assign({}, defaults, opts);
-            // Container must be position (anything but static)
+            // Container must be positioned (anything but static)
             if (typeof container === 'string' || container instanceof HTMLElement) {
                 opts.container = container;
             }
@@ -176,18 +178,20 @@
                         else if (cCoors.scrollX && element.scrollLeft < cCoors.maxScrollX && (cCoors.x + cCoors.w - pEnd.x < opts.scrollEdge))
                             element.scrollLeft += opts.scroll;
 
-                        // Compute selection
-                        if (opts.throttle) {
-                            // Throttle calls to compute
-                            if (!throttled) {
-                                throttled = true;
-                                setTimeout(function () {
-                                    self.compute();
-                                    throttled = false;
-                                }, opts.throttle);
+                        if (opts.compute) {
+                            // Compute selection
+                            if (opts.throttle) {
+                                // Throttle calls to compute
+                                if (!throttled) {
+                                    throttled = true;
+                                    setTimeout(function () {
+                                        self.compute();
+                                        throttled = false;
+                                    }, opts.throttle);
+                                }
+                            } else {
+                                self.compute();
                             }
-                        } else {
-                            self.compute();
                         }
                     }
                 }
@@ -199,7 +203,7 @@
                     started = false;
                     if (e.currentTarget === self.currentTarget) {
                         self.updateContainerPosition().updatePointerPosition(e).updateNoosePosition();
-                        self.compute();
+                        opts.compute && self.compute();
                         setTimeout(function () {
                             opts.stop.apply(self, [e, self.coors, self.selected]);
                         }, 0);
@@ -242,6 +246,8 @@
 
                 delete container.noose;
             });
+            self.noose.remove();
+            self.noose = null;
 
             return self;
         }
@@ -371,7 +377,7 @@
          * Get the current version.
          */
         static get version() {
-            return '1.1.3';
+            return '1.1.4';
         }
     }
 
