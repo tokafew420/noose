@@ -11,7 +11,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /**
  * Noose
  * 
- * version: 1.1.4
+ * version: 1.1.5
  */
 (function (factory, window, document) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
@@ -410,7 +410,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }], [{
       key: "version",
       get: function get() {
-        return '1.1.4';
+        return '1.1.5';
       }
     }]);
 
