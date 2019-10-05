@@ -22,15 +22,6 @@
             border-collapse: collapse;
         }
 
-        .noose-light {
-            border-color: #FFF !important;
-            background-color: rgba(36, 143, 220, 0.3);
-        }
-
-        .selected-green {
-            background-color: rgba(26, 247, 153, 0.5);
-        }
-
         h2::before,
         h3::before {
             display: block;
@@ -88,7 +79,7 @@
     <div class="container">
         <div class="row flex-xl-nowrap">
             <main class="col-12" role="main">
-                <h1>Noose examples</h1>
+                <h1 class="p-2">Noose<span class="version h6 d-inline ml-1 text-muted">v1.0.0</span> Examples</h1>
                 <p class="lead mb-5">Examples of the noose tool and various options/use cases.</p>
                 <h2 id="initialization-example">Initialization</h2>
                 <hr />
@@ -567,9 +558,13 @@ new Noose('#method-compute', {
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
-    <script src="https://cdn.jsdelivr.net/npm/noose@1.1.4/dist/noose.es5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.1.5/dist/noose.es5.min.js"></script>
     <script>
-        $(function () {
+        (function () {
+            'use strict';
+
+            $('.version').text('v' + Noose.version);
+
             $('.example').each(function () {
                 var $example = $(this);
                 var $target = $('.example-target', $example);
@@ -599,7 +594,7 @@ new Noose('#method-compute', {
             if ($a.length) {
                 $('body')[0].scrollTop = $a.offset().top;
             }
-        });
+        }());
 
     </script>
 </body>

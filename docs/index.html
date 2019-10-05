@@ -54,10 +54,10 @@
         </ul>
     </header>
 
-    <div class="container">
+    <div class="container no-select" style="position: relative;">
         <div class="row flex-xl-nowrap">
             <main class="col-12" role="main">
-                <h1 class="py-2">Noose</h1>
+                <h1 class="py-2">Noose<span class="version h6 d-inline ml-1 text-muted">v1.0.0</span></h1>
                 <hr />
                 <div class="mb-2">
                     <a href="https://www.npmjs.com/package/noose">
@@ -81,11 +81,17 @@
                     <img class="img-fluid" src="./demo.gif" alt="Noose demo">
                 </div>
 
-                <p class="mb-2">
-                    <span class="code">Noose</span> is kept simple for performance. It's only purpose is to calculate
-                    the region to draw and then determine the elements to mark as selected. Styling is left to the user.
+                <p class="mb-2"><span class="code">Noose</span> is kept simple for performance. It's only purpose is to calculate
+                    the region to draw and then determine the elements to mark as selected. No CSS is provided, styling
+                    is left to the user. Checkout the <a href="https://tokafew420.github.io/noose/documentation.html">documentation</a> for details and code examples.
                 </p>
 
+                <h2 class="py-2">Demo</h2>
+                <hr />
+                <div class="my-4"><button class="enable-noose-btn btn btn-sm btn-secondary mr-2">Disabled</button> <span>Click to enable <span class="code">Noose</span> on this page and select words.</span></div>
+
+                <h2 class="py-2">Links</h2>
+                <hr />
                 <div class="my-4">
                     <ul style="list-style: none; padding-left: 0;">
                         <li><a href="./documentation.html">Documentation</a></li>
@@ -97,6 +103,54 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.1.5/dist/noose.es5.min.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            $('.version').text('v' + Noose.version);
+
+            var node, nodes = [];
+            var walker = document.createTreeWalker($('.container')[0], NodeFilter.SHOW_TEXT, {
+                acceptNode: function (node) {
+                    if (node.parentNode.nodeName !== 'SCRIPT' &&
+                        node.parentNode.nodeName !== 'STYLE' &&
+                        node.textContent.replace(/\s/g, '').length === 0) {
+                        return NodeFilter.FILTER_SKIP; //Skip empty text nodes
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }, false);
+            while (node = walker.nextNode()) {
+                nodes.push(node);
+            }
+            nodes.forEach(function (n) {
+                var span = document.createElement('span');
+                span.innerHTML = n.textContent.replace(/(\b\w+\b)/g, '<span class="word">$1</span>');
+                n.parentNode.replaceChild(span, n);
+            });
+            var noose = new Noose('.container', {
+                classes: {
+                    selected: 'word-selected'
+                },
+                enabled: false,
+                select: '.word'
+            })
+
+            var enabled = false;
+            $('.enable-noose-btn').on('click', function (e) {
+                var $btn = $(this);
+                noose.opts.enabled = enabled = !enabled;
+
+                if (enabled) {
+                    $btn.text('Enabled').addClass('btn-success');
+                } else {
+                    $btn.text('Disabled').removeClass('btn-success');
+                }
+            });
+        }());
+
+    </script>
 </body>
 
 </html>

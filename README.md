@@ -23,3 +23,4 @@ Go to [https://tokafew420.github.io/noose/](https://tokafew420.github.io/noose/d
 - jQuery UI selectable - https://jqueryui.com/selectable/
 - DragSelect - https://thibaultjanbeyer.github.io/DragSelect/
 - ngx-drag-to-select - https://github.com/d3lm/ngx-drag-to-select
+- Selectable.js - https://github.com/Mobius1/Selectable

@@ -59,19 +59,31 @@
             <div class="d-none d-xl-block col-xl-3">
             </div>
             <main class="col-12 col-md-8 col-xl-6" role="main">
-                <h1 class="py-2">Noose</h1>
+                <h1 class="py-2">Noose<span class="version h6 d-inline ml-1 text-muted">v1.0.0</span> Documentation</h1>
                 <hr />
                 <p class="mb-2">
                     Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's <a href="https://jqueryui.com/selectable/">selectable</a>.
                     Supports modern browsers and mobile. <span class="code">Noose</span> is kept simple for performance. It's only purpose is to calculate
-                    the region to draw and then determine the elements to mark as selected. Styling is left to the user.
+                    the region to draw and then determine the elements to mark as selected. No CSS is provided, styling is left to the user.
                 </p>
 
                 <section>
-                    <h2 class="py-2" id="getting-started">Getting Started</h2>
+                    <h2 class="py-2" id="getting-started">Getting Started
+                        <a class="ml-2 doc-link" aria-hidden="true" href="#getting-started">
+                            <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                            </svg>
+                        </a>
+                    </h2>
                     <hr />
                     <section>
-                        <h3 class="py-2" id="installation">Installation</h3>
+                        <h3 class="py-2" id="installation">Installation
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#installation">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>Download or install from git or npm.</p>
                         <pre class="prettyprint lang-sh">
 npm -i noose
@@ -84,7 +96,13 @@ git clone https://github.com/tokafew420/noose.git
 </pre>
                     </section>
                     <section>
-                        <h3 class="py-2" id="distribution">Distribution</h3>
+                        <h3 class="py-2" id="distribution">Distribution
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#distribution">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>These files are available in the distribution directory.</p>
                         <ul>
                             <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.js">noose.js</a> - ES6 source file</li>
@@ -94,7 +112,13 @@ git clone https://github.com/tokafew420/noose.git
                         </ul>
                     </section>
                     <section>
-                        <h3 class="py-2" id="basic-usage">Basic Usage</h3>
+                        <h3 class="py-2" id="basic-usage">Basic Usage
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#basic-usage">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             Initialize <span class="code">Noose</span> with default options by passing in a valid css
                             selector or a reference to a <span class="code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a></span>.
@@ -107,10 +131,22 @@ var noose = new Noose('.my-container');
                 </section>
 
                 <section>
-                    <h2 class="py-2" id="options">Options</h2>
+                    <h2 class="py-2" id="options">Options
+                        <a class="ml-2 doc-link" aria-hidden="true" href="#options">
+                            <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                            </svg>
+                        </a>
+                    </h2>
                     <hr />
                     <section>
-                        <h3 class="py-2" id="option-classes">classes</h3>
+                        <h3 class="py-2" id="option-classes">classes
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-classes">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>object</i> - A hash of classes to apply.
                         </p>
@@ -121,7 +157,13 @@ var noose = new Noose('.my-container');
                         <p><a href="./examples.html#option-classes-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-compute">compute</h3>
+                        <h3 class="py-2" id="option-compute">compute
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-compute">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>boolean</i> - Enable or disable the computing of selected elements. Default is <span class="code">true</span>.
                         </p>
@@ -129,7 +171,13 @@ var noose = new Noose('.my-container');
                         <p><a href="./examples.html#method-compute">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-container">container</h3>
+                        <h3 class="py-2" id="option-container">container
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-container">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>string | Element</i> - Specify the containing parent element for the noose. Default is <span class="code">'body'</span>.
                         </p>
@@ -141,13 +189,25 @@ var noose = new Noose({
 </pre>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-enabled">enabled</h3>
+                        <h3 class="py-2" id="option-enabled">enabled
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-enabled">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>boolean</i> - Enable or disable the noose. Default is <span class="code">true</span>.
                         </p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-mode">mode</h3>
+                        <h3 class="py-2" id="option-mode">mode
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-mode">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p><i>string</i> - Specify the selection criteria. There are 2 possible values.</p>
                         <ul>
                             <li><span class="code">fit</span> - The candidate element must fit entirely inside the noose region.</li>
@@ -157,7 +217,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-mode-fit-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-scroll">scroll</h3>
+                        <h3 class="py-2" id="option-scroll">scroll
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-scroll">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>number</i> - When auto scrolling, this is the amount of pixels to scroll. Set to <span class="code">0</span> to disable auto scrolling.
                             Default is <span class="code">10</span>.
@@ -165,7 +231,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-scroll-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-scrollEdge">scrollEdge</h3>
+                        <h3 class="py-2" id="option-scrollEdge">scrollEdge
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-scrollEdge">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>number</i> - The offset amount from the container's edge where auto scrolling will be initiated. Set to <span class="code">0</span>
                             to disable auto scrolling. Default is <span class="code">10</span>.
@@ -173,7 +245,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-scroll-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-scrollbar">scrollbar</h3>
+                        <h3 class="py-2" id="option-scrollbar">scrollbar
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-scrollbar">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>number</i> - The size (in pixel) of the scrollbar. When scrollbars are present in the container, clicking within
                             this region will not start the noose. This is to allow interaction with the scrollbars. Default is <span class="code">17</span>.
@@ -181,7 +259,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-scroll-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-select">select</h3>
+                        <h3 class="py-2" id="option-select">select
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-select">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>string</i> - Specify the selector for selecting child elements. Default is <span class="code">'*'</span>.
                         </p>
@@ -195,7 +279,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-select-false-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-start">start</h3>
+                        <h3 class="py-2" id="option-start">start
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-start">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>function( <span class="code">event</span> , <span class="code">coordinates</span> )</i> - Called on start of noose. Return <span class="code">false</span> to prevent noosing.
                         </p>
@@ -207,7 +297,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-start-stop-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-stop">stop</h3>
+                        <h3 class="py-2" id="option-stop">stop
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-stop">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>function( <span class="code">event</span> , <span class="code">coordinates</span> , <span class="code">selected</span> )</i> - Called when noose is complete.
                         </p>
@@ -220,7 +316,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-start-stop-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-style">style</h3>
+                        <h3 class="py-2" id="option-style">style
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-style">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>object</i> - A hash containing the style for the noose.
                         </p>
@@ -231,7 +333,13 @@ var noose = new Noose({
                         <p><a href="./examples.html#option-style-example">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="option-throttle">throttle</h3>
+                        <h3 class="py-2" id="option-throttle">throttle
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-throttle">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             <i>number</i> - The delay (in ms) between computations of the selected elements. Setting this value to <span class="code">0</span>
                             will disable throttling. Default is <span class="code">200</span>.
@@ -241,10 +349,22 @@ var noose = new Noose({
                     </section>
                 </section>
                 <section>
-                    <h2 class="py-2" id="methods">Methods</h2>
+                    <h2 class="py-2" id="methods">Methods
+                        <a class="ml-2 doc-link" aria-hidden="true" href="#methods">
+                            <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                            </svg>
+                        </a>
+                    </h2>
                     <hr />
                     <section>
-                        <h3 class="py-2" id="method-compute">compute</h3>
+                        <h3 class="py-2" id="method-compute">compute
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#method-compute">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             Computes the selected elements given the current coordinates. When <a class="inline-toc" href="#option-compute"><span class="code">compute</span></a>
                             option is disabled, call this to get selected elements.</p>
@@ -254,11 +374,198 @@ var noose = new Noose({
                         <p><a href="./examples.html#method-compute">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="method-destroy">destroy</h3>
+                        <h3 class="py-2" id="method-destroy">destroy
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#method-destroy">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
                         <p>
                             Destroy and cleanup the current instance.</p>
                         <p>
                             Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <h2 class="py-2" id="properties">Properties
+                        <a class="ml-2 doc-link" aria-hidden="true" href="#properties">
+                            <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                            </svg>
+                        </a>
+                    </h2>
+                    <hr />
+                    <section>
+                        <h3 class="py-2" id="property-containers">containers
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-containers">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>NodeList</i> - Collection of elements (containers) which were queried from the
+                            <a class="inline-toc" href="#option-container"><span class="code">container</span></a> option and are initialized for noosing.
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="property-coors">coors
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-coors">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>Object</i> - Holds the calculated coordinates of the current noosing operation.
+                        </p>
+                        <ul>
+                            <li>
+                                <div>
+                                    <span class="code">container</span> - <i>Object</i> - Coordinates for the current container.
+                                    <ul>
+                                        <li><span class="code">h</span> - <i>number</i> - The height of the container</li>
+                                        <li><span class="code">w</span> - <i>number</i> - The width of the container.</li>
+                                        <li><span class="code">maxScrollX</span> - <i>number</i> - The max amount of scrolling available on the <span class="code">x</span> axis.</li>
+                                        <li><span class="code">maxScrollY</span> - <i>number</i> - The max amount of scrolling available on the <span class="code">y</span> axis.</li>
+                                        <li><span class="code">scrollX</span> - <i>boolean</i> - Whether the container can scroll left/right.</li>
+                                        <li><span class="code">scrollY</span> - <i>boolean</i> - Whether the container can scroll up/down.</li>
+                                        <li><span class="code">x</span> - <i>number</i> - The <span class="code">x</span> (left) position of the container relative to the page.</li>
+                                        <li><span class="code">y</span> - <i>number</i> - The <span class="code">y</span> (top) position of the container relative to the page.</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <span class="code">noose</span> - <i>Object</i> - Coordinates for the current noose.
+                                    <ul>
+                                        <li><span class="code">bottom</span> - <i>Object</i> - Contains the <span class="code">x,y</span> (bottom/right) coordinates relative to the current container.</li>
+                                        <li><span class="code">start</span> - <i>Object</i> - Contains the original starting <span class="code">x,y</span> coordinates relative to the current container.</li>
+                                        <li><span class="code">top</span> - <i>Object</i> - Contains the <span class="code">x,y</span> (top/left) coordinates relative to the current container.</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <span class="code">pointer</span> - <i>Object</i> - Coordinates for the mouse/touch events.
+                                    <ul>
+                                        <li><span class="code">end</span> - <i>Object</i> - Contains the most recent <span class="code">x,y</span> coordinates relative to the page.</li>
+                                        <li><span class="code">start</span> - <i>Object</i> - Contains the original starting <span class="code">x,y</span> coordinates relative to the page.</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="property-noose">noose
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-noose">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>HTMLDivElement</i> - The drawn noose element.
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="property-opts">opts
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-opts">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>Object</i> - A reference to the initialized <a class="inline-toc" href="#options"><span class="code">options</span></a> object.
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="property-selected">selected
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-selected">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>Array[HTMLElement]</i> - An array of all the selected element from the noosing operation.
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="property-version">version
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-version">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>string</i> - Gets the version number.
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <h2 class="py-2" id="more">More
+                        <a class="ml-2 doc-link" aria-hidden="true" href="#more">
+                            <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                            </svg>
+                        </a>
+                    </h2>
+                    <hr />
+                    <section>
+                        <h3 class="py-2" id="more-browser-selection">Browser Selection
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#more-browser-selection">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            To prevent the default browser behavior of selecting the text when the mouse is dragged, apply this CSS to the containers.
+                            <i>(This is used in all examples.)</i>
+                        </p>
+                        <pre class="prettyprint lang-css">
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+</pre>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="more-positioning">Positioning
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#more-positioning">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            All containers should be positioned. This means anything but the default position, which is <span class="code">static</span>.
+                            This allows the noose to be drawn relative to the container. If the container is not positioned, then the noose will not
+                            be drawn correctly. This also prevents correct selection of elements.
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="more-touch-scrolling">Touch Scrolling
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#more-touch-scrolling">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            On touch enabled devices, scrolling will be prevent when Noose is enabled and the touch event is within the container.
+                            For pages with long content, it is recommended that Noose is only enabled in a smaller region that will not take up the
+                            entire viewport. This will allow the user to scroll the page when touching outside the Noose enabled container. Another
+                            approach can be to allow the user to enable/disable the noose action.
                         </p>
                     </section>
                 </section>
@@ -293,35 +600,140 @@ var noose = new Noose({
                         <a class="nav-link" href="#method-compute">compute</a>
                         <a class="nav-link" href="#method-destroy">destroy</a>
                     </nav>
+                    <a class="nav-link" href="#properties">Properties</a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#property-containers">containers</a>
+                        <a class="nav-link" href="#property-coors">coors</a>
+                        <a class="nav-link" href="#property-noose">noose</a>
+                        <a class="nav-link" href="#property-opts">opts</a>
+                        <a class="nav-link" href="#property-selected">selected</a>
+                        <a class="nav-link" href="#property-version">version</a>
+                    </nav>
+                    <a class="nav-link" href="#more">More</a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#more-browser-selection">Browser Selection</a>
+                        <a class="nav-link" href="#more-positioning">Positioning</a>
+                        <a class="nav-link" href="#more-touch-scrolling">Touch Scrolling</a>
+                    </nav>
                 </nav>
             </div>
         </div>
     </div>
 
-    <div class="footer mt-5"></div>
+    <div class="footer mt-5" style="position: relative;"><span class="p-2 h6 text-white" style="position: absolute; left: 0; top: 0;">Having some fun!</span></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.1.5/dist/noose.es5.min.js"></script>
 
     <script>
-        // Smooth scrolling using jQuery easing
-        $('.toc a[href*="#"]:not([href="#"]), a.inline-toc[href*="#"]:not([href="#"])').click(function (e) {
-            e.preventDefault();
-            var $this = $(this);
-            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-                var $target = $(this.hash);
-                $target = $target.length ? $target : $('[name=' + this.hash.slice(1) + ']');
-                if ($target.length) {
-                    $('html, body').animate({
-                        scrollTop: $target.offset().top - 86
-                    }, 500, 'easeInOutExpo');
+        (function () {
+            'user strict';
 
-                    return false;
+            $('.version').text('v' + Noose.version);
+
+            // Smooth scrolling using jQuery easing
+            $('.toc a[href*="#"]:not([href="#"]), a.inline-toc[href*="#"]:not([href="#"]), a.doc-link[href*="#"]:not([href="#"])').click(function (e) {
+                e.preventDefault();
+                var $this = $(this);
+                if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+                    var $target = $(this.hash);
+                    $target = $target.length ? $target : $('[name=' + this.hash.slice(1) + ']');
+                    if ($target.length) {
+                        $('html, body').animate({
+                            scrollTop: $target.offset().top - 86
+                        }, 500, 'easeInOutExpo');
+                        location.hash = this.hash;
+                        return false;
+                    }
                 }
+            });
+
+            var noose = new Noose('.footer', {
+                classes: {
+                    noose: 'noose-light',
+                    selected: 'selected-red'
+                },
+                select: '.circle'
+            });
+
+            function randomRange(min, max) {
+                return Math.floor(min + (Math.random() * (max - min)));
             }
-        });
+
+            function createCircle(pos) {
+                var $circle = $('<div class="circle"></div>');
+                var smaller = Math.min(pos.w, pos.h);
+                var size = randomRange(smaller / 20, smaller / 10);
+                var circle = {
+                    $el: $circle,
+                    size: size,
+                    dx: randomRange(1, size * 3),
+                    dy: randomRange(1, size * 3),
+                    left: randomRange(size, pos.w - size),
+                    top: randomRange(size, pos.h - size)
+                };
+                $circle.css({
+                    left: circle.left + 'px',
+                    top: circle.top + 'px',
+                    width: circle.size + 'px',
+                    height: circle.size + 'px',
+                    'border-radius': circle.size / 2 + 'px',
+                    'border-color': 'rgb(' + randomRange(0, 255) + ', ' + randomRange(0, 255) + ', ' + randomRange(0, 255) + ')'
+                });
+
+                return circle;
+            };
+
+            var $footer = $('.footer');
+            var circles = [];
+            var pos = {
+                h: $footer.height(),
+                w: $footer.width()
+            };
+
+            Array(randomRange(5, 10)).fill().forEach(function () {
+                var circle = createCircle(pos);
+                circles.push(circle);
+                $footer.append(circle.$el);
+            });
+
+            setInterval(function () {
+                circles.forEach(function (circle) {
+                    circle.left += circle.dx;
+                    circle.top += circle.dy;
+
+                    if (circle.left <= 0 || (circle.left + circle.size) >= pos.w) {
+                        if (circle.left <= 0) {
+                            circle.left = 0;
+                        } else {
+                            circle.left = pos.w - circle.size;
+                        }
+                        circle.dx = -circle.dx;
+                    }
+                    if (circle.top <= 0 || (circle.top + circle.size) > pos.h) {
+                        if (circle.top <= 0) {
+                            circle.top = 0;
+                        } else {
+                            circle.top = pos.h - circle.size;
+                        }
+                        circle.dy = -circle.dy;
+                    }
+                    circle.$el.css({
+                        left: circle.left + 'px',
+                        top: circle.top + 'px'
+                    });
+                });
+                noose.coors.pointer.start && noose.compute();
+            }, 300);
+
+            $(window).on('resize', function () {
+                pos.h = $footer.height();
+                pos.w = $footer.width();
+            });
+        }());
 
     </script>
 </body>
