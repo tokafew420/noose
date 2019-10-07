@@ -20,6 +20,8 @@
     'use strict';
 
     function noop() {}
+    const _min = Math.min;
+    const _max = Math.max;
 
     // Default options
     const defaults = {
@@ -32,10 +34,14 @@
         compute: true,
         // Containing element for the noose
         container: 'body',
+        // Enable/disable support for ctrl key
+        ctrl: true,
         // Whether the noose is enabled
         enabled: true,
         // The selection mode, part or whole
         mode: 'touch',
+        // On noose move
+        move: noop,
         // The amount of pixels to scroll
         scroll: 10,
         // The edge offset when scrolling should happen
@@ -44,6 +50,8 @@
         scrollbar: 17,
         // Elements to select
         select: '*',
+        // Enabled/disable support for shift key
+        shift: true,
         // On noose-ing start handler
         start: noop,
         // On noose-ing stop handler
@@ -81,15 +89,9 @@
             // Setup states
             self.coors = {
                 // Relative to document top left origin
-                pointer: {
-                    start: null,
-                    end: {} // The current/end position of the mouse/touch
-                },
+                pointer: {},
                 // Relative to container
-                noose: {
-                    top: null,
-                    bottom: null // The bottom right position of the noose
-                },
+                noose: {},
                 // Relative to document top left origin
                 container: {}
             };
@@ -104,8 +106,9 @@
             let started = false; // Flag for noose-ing started
             let throttled = false;
             self._onStart = function (e) {
+                const sameContainer = e.currentTarget === self.currentTarget;
                 if (opts.enabled &&
-                    (!started || e.currentTarget !== self.currentTarget) &&
+                    (!started || !sameContainer) &&
                     (e.type !== 'mousedown' || e.which === 1)) {
                     started = true;
                     const element = self.currentTarget = e.currentTarget;
@@ -129,22 +132,74 @@
                     // Set the max allowed scroll amount
                     cCoors.maxScrollY = cCoors.scrollY && element.scrollHeight - element.clientHeight || 0;
                     cCoors.maxScrollX = cCoors.scrollX && element.scrollWidth - element.clientWidth || 0;
+
+                    // Get previous start coors in case we need to restore them
+                    const pStart = pCoors.start;
+                    const pEnd = pCoors.end;
+
                     // Reset start positions
                     pCoors.start = null;
                     nCoors.start = null;
+
                     self.updateContainerPosition().updatePointerPosition(e);
                     // If the scrollbar was click then don't start
                     if (opts.scrollbar &&
-                        ((cCoors.scrollX && pCoors.start.x > (cCoors.x + cCoors.w - opts.scrollbar) ||
-                            cCoors.scrollY && pCoors.start.y > (cCoors.y + cCoors.h - opts.scrollbar)))) {
+                        ((cCoors.scrollX && pCoors.end.x > (cCoors.x + cCoors.w - opts.scrollbar) ||
+                            cCoors.scrollY && pCoors.end.y > (cCoors.y + cCoors.h - opts.scrollbar)))) {
                         started = false;
+                        pCoors.start = pStart;
+                        pCoors.end = pEnd;
                         return;
                     }
+
+                    // Shift key is pressed, continue noose from previous opposing corner
+                    if (opts.shift && sameContainer && e.shiftKey && pStart) {
+                        const nTop = nCoors.top;
+                        const nBottom = nCoors.bottom;
+                        const midX = Math.floor((pStart.x + pEnd.x) / 2);
+                        const midY = Math.floor((pStart.y + pEnd.y) / 2);
+
+                        nCoors.start = {};
+                        if (pCoors.start.x >= midX && pCoors.start.y < midY) {
+                            // 1st quadrant
+                            pCoors.start.x = _min(pStart.x, pEnd.x);
+                            pCoors.start.y = _max(pStart.y, pEnd.y);
+                            nCoors.start.x = nTop.x;
+                            nCoors.start.y = nBottom.y;
+                        } else if (pCoors.start.x < midX && pCoors.start.y <= midY) {
+                            // 2nd quadrant
+                            pCoors.start.x = _max(pStart.x, pEnd.x);
+                            pCoors.start.y = _max(pStart.y, pEnd.y);
+                            nCoors.start = nBottom;
+                        } else if (pCoors.start.x <= midX && pCoors.start.y > midY) {
+                            // 3rd quadrant
+                            pCoors.start.x = _max(pStart.x, pEnd.x);
+                            pCoors.start.y = _min(pStart.y, pEnd.y);
+                            nCoors.start.x = nBottom.x;
+                            nCoors.start.y = nTop.y;
+                        } else if (pCoors.start.x > midX && pCoors.start.y >= midY) {
+                            // 4th quadrant
+                            pCoors.start.x = _min(pStart.x, pEnd.x);
+                            pCoors.start.y = _min(pStart.y, pEnd.y);
+                            nCoors.start = nTop;
+                        }
+                    }
+
+                    if (opts.ctrl && sameContainer && e.ctrlKey) {
+                        self.lastSelection = self.selected || [];
+                    } else {
+                        self.lastSelection = [];
+                    }
+
                     noose.style.display = 'none';
+
                     if (opts.start.apply(self, [e, self.coors]) === false) {
                         started = false;
+                        pCoors.start = pStart;
+                        pCoors.end = pEnd;
                         return;
                     }
+
                     element.appendChild(noose);
                 }
             };
@@ -159,10 +214,10 @@
                         // Draw noose
                         let nTop = self.coors.noose.top;
                         let nBottom = self.coors.noose.bottom;
-                        noose.style.left = nTop.x + 'px';
-                        noose.style.top = nTop.y + 'px';
-                        noose.style.width = (nBottom.x - nTop.x) + 'px';
-                        noose.style.height = (nBottom.y - nTop.y) + 'px';
+                        noose.style.left = nTop.x;
+                        noose.style.top = nTop.y;
+                        noose.style.width = (nBottom.x - nTop.x);
+                        noose.style.height = (nBottom.y - nTop.y);
                         noose.style.display = 'block';
 
                         // Scroll container
@@ -185,12 +240,13 @@
                                 if (!throttled) {
                                     throttled = true;
                                     setTimeout(function () {
-                                        self.compute();
+                                        throttled && self.compute() && opts.move.apply(self, [e, self.coors, self.selected]);
                                         throttled = false;
                                     }, opts.throttle);
                                 }
                             } else {
                                 self.compute();
+                                opts.move.apply(self, [e, self.coors, self.selected]);
                             }
                         }
                     }
@@ -203,7 +259,8 @@
                     started = false;
                     if (e.currentTarget === self.currentTarget) {
                         self.updateContainerPosition().updatePointerPosition(e).updateNoosePosition();
-                        opts.compute && self.compute();
+                        throttled = false;  // Don't run throttled compute after noose action already completed
+                        opts.compute && self.compute(true);
                         setTimeout(function () {
                             opts.stop.apply(self, [e, self.coors, self.selected]);
                         }, 0);
@@ -299,14 +356,14 @@
          */
         updateNoosePosition() {
             const element = this.currentTarget;
-            const pCoors = this.coors.pointer;
+            const pEnd = this.coors.pointer.end;
             const cCoors = this.coors.container;
             const nCoors = this.coors.noose;
             // Pointer and container are both relative to document top left origin.
             // The noose is positioned absolute relative to the container. So that's
             // (pointer - container), and also account for the container's scroll position.
-            const endX = Math.max(pCoors.end.x - cCoors.x + element.scrollLeft, 0);
-            const endY = Math.max(pCoors.end.y - cCoors.y + element.scrollTop, 0);
+            const endX = _max(pEnd.x - cCoors.x + element.scrollLeft, 0);
+            const endY = _max(pEnd.y - cCoors.y + element.scrollTop, 0);
 
             if (!nCoors.start) {
                 // Keep start position static
@@ -319,12 +376,12 @@
             // Determine top and bottom of the noose
             // top < bottom
             nCoors.top = {
-                x: Math.min(nCoors.start.x, endX),
-                y: Math.min(nCoors.start.y, endY)
+                x: _min(nCoors.start.x, endX),
+                y: _min(nCoors.start.y, endY)
             };
             nCoors.bottom = {
-                x: Math.min(Math.max(nCoors.start.x, endX), element.scrollWidth),
-                y: Math.min(Math.max(nCoors.start.y, endY), element.scrollHeight)
+                x: _min(_max(nCoors.start.x, endX), element.scrollWidth),
+                y: _min(_max(nCoors.start.y, endY), element.scrollHeight)
             };
 
             return this;
@@ -339,22 +396,26 @@
             // Only do if select is enabled
             if (self.opts.select) {
                 const className = self.opts.classes.selected;
-                const elements = self.currentTarget.querySelectorAll(self.opts.select);
+                const container = self.currentTarget;
+                const elements = container.querySelectorAll(self.opts.select);
                 const nTop = self.coors.noose.top;
                 const nBottom = self.coors.noose.bottom;
                 const offsetX = self.coors.container.x;
                 const offsetY = self.coors.container.y;
+
                 self.selected = [];
+
                 Array.prototype.forEach.call(elements, function (element) {
-                    if (element === self.noose)
-                        return; // Don't include noose
-                    let include = false;
+                    if (element === self.noose) return; // Don't include noose
+
+                    let include;
                     // Get absolute position of element relative to container
                     const rect = element.getBoundingClientRect();
-                    const topX = rect.left + window.pageXOffset - offsetX + self.currentTarget.scrollLeft;
-                    const topY = rect.top + window.pageYOffset - offsetY + self.currentTarget.scrollTop;
+                    const topX = rect.left + window.pageXOffset - offsetX + container.scrollLeft;
+                    const topY = rect.top + window.pageYOffset - offsetY + container.scrollTop;
                     const bottomX = rect.width + topX;
                     const bottomY = rect.height + topY;
+
                     if (self.opts.mode === 'fit') {
                         // Include is entire element is within noose
                         include = nTop.x <= topX && nTop.y <= topY && nBottom.x >= bottomX && nBottom.y >= bottomY;
@@ -362,7 +423,10 @@
                         // Include if partially touching
                         include = !(nTop.x > bottomX || nTop.y > bottomY || nBottom.x < topX || nBottom.y < topY);
                     }
-                    if (include) {
+
+                    const idx = self.lastSelection.indexOf(element);
+
+                    if (include && idx === -1 || !include && idx !== -1) {
                         className && element.classList.add(className);
                         self.selected.push(element);
                     } else {

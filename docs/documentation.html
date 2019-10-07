@@ -63,8 +63,8 @@
                 <hr />
                 <p class="mb-2">
                     Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's <a href="https://jqueryui.com/selectable/">selectable</a>.
-                    Supports modern browsers and mobile. <span class="code">Noose</span> is kept simple for performance. It's only purpose is to calculate
-                    the region to draw and then determine the elements to mark as selected. No CSS is provided, styling is left to the user.
+                    Supports modern browsers and mobile. <span class="code">Noose</span> is kept simple for performance. Its only purpose is to calculate
+                    the noose region to render and then determine the elements to mark as selected. No CSS is provided, styling is left to the user.
                 </p>
 
                 <section>
@@ -108,7 +108,7 @@ git clone https://github.com/tokafew420/noose.git
                             <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.js">noose.js</a> - ES6 source file</li>
                             <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.min.js">noose.min.js</a> - Minified ES6 source file</li>
                             <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.js">noose.es5.js</a> - Transpiled ES5 source file</li>
-                            <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.min.js">noose.es5.min.js</a> - Minified transpiled ES5 source file</li>
+                            <li><a href="https://cdn.jsdelivr.net/npm/noose/dist/noose.es5.min.js">noose.es5.min.js</a> - Minified and transpiled ES5 source file</li>
                         </ul>
                     </section>
                     <section>
@@ -121,7 +121,7 @@ git clone https://github.com/tokafew420/noose.git
                         </h3>
                         <p>
                             Initialize <span class="code">Noose</span> with default options by passing in a valid css
-                            selector or a reference to a <span class="code"><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a></span>.
+                            selector or a reference to a <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"><span class="code">HTMLElement</span></a>.
                         </p>
                         <pre class="prettyprint lang-js">
 var noose = new Noose('.my-container');
@@ -165,7 +165,7 @@ var noose = new Noose('.my-container');
                             </a>
                         </h3>
                         <p>
-                            <i>boolean</i> - Enable or disable the computing of selected elements. Default is <span class="code">true</span>.
+                            <i>boolean</i> - Whether computing of selected elements is enabled. Default is <span class="code">true</span>.
                         </p>
                         <p>This is different from <a class="inline-toc" href="#option-select"><span class="code">options.select = false</span></a> as it will still allow for manual calls to <a class="inline-toc" href="#method-compute"><span class="code">compute()</span></a>.</p>
                         <p><a href="./examples.html#method-compute">See example</a></p>
@@ -189,6 +189,18 @@ var noose = new Noose({
 </pre>
                     </section>
                     <section>
+                        <h3 class="py-2" id="option-ctrl">ctrl
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-ctrl">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>boolean</i> - Whether support for multiselect using the <span class="code">ctrl</span> key is enabled. Default is <span class="code">true</span>.
+                        </p>
+                    </section>
+                    <section>
                         <h3 class="py-2" id="option-enabled">enabled
                             <a class="ml-2 doc-link" aria-hidden="true" href="#option-enabled">
                                 <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
@@ -197,7 +209,7 @@ var noose = new Noose({
                             </a>
                         </h3>
                         <p>
-                            <i>boolean</i> - Enable or disable the noose. Default is <span class="code">true</span>.
+                            <i>boolean</i> - Whether the noose action is enabled. Default is <span class="code">true</span>.
                         </p>
                     </section>
                     <section>
@@ -215,6 +227,25 @@ var noose = new Noose({
                         </ul>
                         <p>Default is <span class="code">'touch'</span>.</p>
                         <p><a href="./examples.html#option-mode-fit-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-move">move
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-move">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> , <span class="code">selected</span> )</i> - Called when noose is moved.
+                        </p>
+                        <ul>
+                            <li>The context is the noose instance.</li>
+                            <li><span class="code">event</span> - The event that prompted recalculation of the noose (ie: mousemove, touchmove, or scroll).</li>
+                            <li><span class="code">coordinates</span> - The object containing the <a class="inline-toc" href="#property-coors"><span class="code">coordinates</span></a> used in the noose calculations.</li>
+                            <li><span class="code">selected</span> - The selected elements.</li>
+                        </ul>
+                        <p><a href="./examples.html#option-start-move-stop-example">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-scroll">scroll
@@ -254,7 +285,7 @@ var noose = new Noose({
                         </h3>
                         <p>
                             <i>number</i> - The size (in pixel) of the scrollbar. When scrollbars are present in the container, clicking within
-                            this region will not start the noose. This is to allow interaction with the scrollbars. Default is <span class="code">17</span>.
+                            this region will not start the noose action. This is to allow interaction with the scrollbars. Default is <span class="code">17</span>.
                         </p>
                         <p><a href="./examples.html#option-scroll-example">See example</a></p>
                     </section>
@@ -269,14 +300,27 @@ var noose = new Noose({
                         <p>
                             <i>string</i> - Specify the selector for selecting child elements. Default is <span class="code">'*'</span>.
                         </p>
-                        <p>This is recommended to narrow the scope of what is selectable.</p>
+                        <p>It is recommended to narrow the scope of what is selectable for better performance.</p>
                         <p><a href="./examples.html#option-select-example">See example</a></p>
                         <p>
                             Setting this value to <span class="code">false</span> will bypass the selection process. Do
-                            this if you don't care for selecting elements but want the noose to be drawn.
+                            this if you don't care for selecting elements but want the noose to be rendered.
                         </p>
                         <p>This is different from <a class="inline-toc" href="#option-compute"><span class="code">options.compute = false</span></a> as it will not attempt to run the selection process because a selector is <span class="code">undefined</span>.</p>
                         <p><a href="./examples.html#option-select-false-example">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="option-shift">shift
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#option-shift">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>boolean</i> - Whether support for extending the noose region using the <span class="code">shift</span> key is enabled. Default is <span class="code">true</span>.
+                        </p>
+                        <p>See <a class="inline-toc" href="#more-shift-support"><span class="code">Shift Support</span></a> for more information.</p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-start">start
@@ -287,14 +331,14 @@ var noose = new Noose({
                             </a>
                         </h3>
                         <p>
-                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> )</i> - Called on start of noose. Return <span class="code">false</span> to prevent noosing.
+                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> )</i> - Called on start of the noose action. Return <span class="code">false</span> to prevent noosing.
                         </p>
                         <ul>
                             <li>The context is the noose instance.</li>
-                            <li><span class="code">event</span> - The event the initiated the noosing.</li>
-                            <li><span class="code">coordinates</span> - The object containing the coordinates used in the noose calculations.</li>
+                            <li><span class="code">event</span> - The event that initiated the noose action (ie: mousedown or touchstart).</li>
+                            <li><span class="code">coordinates</span> - The object containing the <a class="inline-toc" href="#property-coors"><span class="code">coordinates</span></a> used in the noose calculations.</li>
                         </ul>
-                        <p><a href="./examples.html#option-start-stop-example">See example</a></p>
+                        <p><a href="./examples.html#option-start-move-stop-example">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-stop">stop
@@ -305,15 +349,15 @@ var noose = new Noose({
                             </a>
                         </h3>
                         <p>
-                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> , <span class="code">selected</span> )</i> - Called when noose is complete.
+                            <i>function( <span class="code">event</span> , <span class="code">coordinates</span> , <span class="code">selected</span> )</i> - Called when noose action is complete.
                         </p>
                         <ul>
                             <li>The context is the noose instance.</li>
-                            <li><span class="code">event</span> - The event the initiated the noosing.</li>
-                            <li><span class="code">coordinates</span> - The object containing the coordinates used in the noose calculations.</li>
+                            <li><span class="code">event</span> - The event ending the noose action (ie: mouseup or touchend).</li>
+                            <li><span class="code">coordinates</span> - The object containing the <a class="inline-toc" href="#property-coors"><span class="code">coordinates</span></a> used in the noose calculations.</li>
                             <li><span class="code">selected</span> - The selected elements.</li>
                         </ul>
-                        <p><a href="./examples.html#option-start-stop-example">See example</a></p>
+                        <p><a href="./examples.html#option-start-move-stop-example">See example</a></p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-style">style
@@ -344,7 +388,7 @@ var noose = new Noose({
                             <i>number</i> - The delay (in ms) between computations of the selected elements. Setting this value to <span class="code">0</span>
                             will disable throttling. Default is <span class="code">200</span>.
                         </p>
-                        <p>Adjust for performace by increasing or decreasing this value depending on the number of elements you have.</p>
+                        <p>Adjust for performace by increasing or decreasing this value depending on the number of selectable elements you have.</p>
                         <p><a href="./examples.html#option-throttle-example">See example</a></p>
                     </section>
                 </section>
@@ -367,7 +411,7 @@ var noose = new Noose({
                         </h3>
                         <p>
                             Computes the selected elements given the current coordinates. When <a class="inline-toc" href="#option-compute"><span class="code">compute</span></a>
-                            option is disabled, call this to get selected elements.</p>
+                            option is disabled, call this manually to get selected elements.</p>
                         <p>
                             Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
                         </p>
@@ -459,6 +503,19 @@ var noose = new Noose({
                         </ul>
                     </section>
                     <section>
+                        <h3 class="py-2" id="property-lastSelection">lastSelection
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#property-lastSelection">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            <i>Array[HTMLElement]</i> - When performing a multiselect action using the <a class="inline-toc" href="#option-ctrl"><span class="code">ctrl</span></a> key, this property will
+                            contain the previously selected elements from the previous noose action.
+                        </p>
+                    </section>
+                    <section>
                         <h3 class="py-2" id="property-noose">noose
                             <a class="ml-2 doc-link" aria-hidden="true" href="#property-noose">
                                 <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
@@ -467,7 +524,7 @@ var noose = new Noose({
                             </a>
                         </h3>
                         <p>
-                            <i>HTMLDivElement</i> - The drawn noose element.
+                            <i>HTMLDivElement</i> - The rendered noose element.
                         </p>
                     </section>
                     <section>
@@ -503,7 +560,7 @@ var noose = new Noose({
                             </a>
                         </h3>
                         <p>
-                            <i>string</i> - Gets the version number.
+                            <i>string</i> - The version number.
                         </p>
                     </section>
                 </section>
@@ -549,9 +606,161 @@ var noose = new Noose({
                         </h3>
                         <p>
                             All containers should be positioned. This means anything but the default position, which is <span class="code">static</span>.
-                            This allows the noose to be drawn relative to the container. If the container is not positioned, then the noose will not
-                            be drawn correctly. This also prevents correct selection of elements.
+                            This allows the noose to be rendered relative to the container. If the container is not positioned, then the noose will not
+                            be render correctly and also will not correctly calculate the selected elements.
                         </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="more-shift-support">Shift Support
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#more-shift-support">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            The previous noose region can be extended by holding the <span class="code">shift</span> key during the start of the noose action.
+                            The noose region will be started using the opposing quadrant of the previous noose region.
+                        </p>
+                        <p>
+                            Hover over the quadrants to hightlight its opposing quadrant where the noose will be extended from. <i>Note: </i>The blue dashed borders are inclusive
+                            and the red dashed borders are exclusive.
+                        </p>
+                        <style>
+                            .quadrant-example {
+                                position: relative;
+                            }
+
+                            .quadrant-example .quadrant {
+                                position: absolute;
+                            }
+
+                            .quadrant-example .quadrant-1 {
+                                border-left: 2px dashed #0400ff;
+                                border-bottom: 2px dashed #ff0000;
+                                opacity: .2;
+                            }
+
+                            .quadrant-example .quadrant-2 {
+                                border-bottom: 2px dashed #0400ff;
+                                border-right: 2px dashed #ff0000;
+                                opacity: .2;
+                            }
+
+                            .quadrant-example .quadrant-3 {
+                                border-right: 2px dashed #0400ff;
+                                border-top: 2px dashed #ff0000;
+                                opacity: .2;
+                            }
+
+                            .quadrant-example .quadrant-4 {
+                                border-top: 2px dashed #0400ff;
+                                border-left: 2px dashed #ff0000;
+                                opacity: .2;
+                            }
+
+                            .quadrant-example .quadrant-label {
+                                position: absolute;
+                                background-color: green;
+                                color: #fff;
+                                border-radius: 4px;
+                                padding: 0 4px;
+                                top: 125px;
+                                left: 4px;
+                                opacity: .2;
+                            }
+
+                            .marker {
+                                position: absolute;
+                                height: 16px;
+                                width: 16px;
+                                border-radius: 8px;
+                                border: 4px solid #0400ff;
+                                opacity: .2;
+                            }
+
+                        </style>
+                        <div class="quadrant-example">
+                            <table class="table table-sm table-collapsed table-striped table-bordered">
+                                <thead>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                    <th>Column 4</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cell 1,1</td>
+                                        <td>Cell 2,1</td>
+                                        <td>Cell 3,1</td>
+                                        <td>Cell 4,1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1,2</td>
+                                        <td>Cell 2,2</td>
+                                        <td>Cell 3,2</td>
+                                        <td>Cell 4,2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1,3</td>
+                                        <td>Cell 2,3</td>
+                                        <td>Cell 3,3</td>
+                                        <td>Cell 4,3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selected top-left">Cell 1,4</td>
+                                        <td class="selected">Cell 2,4</td>
+                                        <td class="selected top-right">Cell 3,4</td>
+                                        <td>Cell 4,4</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selected">Cell 1,5</td>
+                                        <td class="selected middle">Cell 2,5</td>
+                                        <td class="selected">Cell 3,5</td>
+                                        <td>Cell 4,5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selected bottom-left">Cell 1,6</td>
+                                        <td class="selected">Cell 2,6</td>
+                                        <td class="selected bottom-right">Cell 3,6</td>
+                                        <td>Cell 4,6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1,7</td>
+                                        <td>Cell 2,7</td>
+                                        <td>Cell 3,7</td>
+                                        <td>Cell 4,7</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1,8</td>
+                                        <td>Cell 2,8</td>
+                                        <td>Cell 3,8</td>
+                                        <td>Cell 4,8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1,9</td>
+                                        <td>Cell 2,9</td>
+                                        <td>Cell 3,9</td>
+                                        <td>Cell 4,9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1,10</td>
+                                        <td>Cell 2,10</td>
+                                        <td>Cell 3,10</td>
+                                        <td>Cell 4,10</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="quadrant quadrant-1" data-num="1"></div>
+                            <div class="quadrant quadrant-2" data-num="2"></div>
+                            <div class="quadrant quadrant-3" data-num="3"></div>
+                            <div class="quadrant quadrant-4" data-num="4"></div>
+                            <div class="marker marker-1"></div>
+                            <div class="marker marker-2"></div>
+                            <div class="marker marker-3"></div>
+                            <div class="marker marker-4"></div>
+                            <div class="quadrant-label">Previous Selection</div>
+                        </div>
                     </section>
                     <section>
                         <h3 class="py-2" id="more-touch-scrolling">Touch Scrolling
@@ -565,7 +774,7 @@ var noose = new Noose({
                             On touch enabled devices, scrolling will be prevent when Noose is enabled and the touch event is within the container.
                             For pages with long content, it is recommended that Noose is only enabled in a smaller region that will not take up the
                             entire viewport. This will allow the user to scroll the page when touching outside the Noose enabled container. Another
-                            approach can be to allow the user to enable/disable the noose action.
+                            approach can be to allow the user to <a class="inline-toc" href="#option-enabled"><span class="code">enable/disable</span></a> the noose action.
                         </p>
                     </section>
                 </section>
@@ -584,12 +793,15 @@ var noose = new Noose({
                         <a class="nav-link" href="#option-classes">classes</a>
                         <a class="nav-link" href="#option-compute">compute</a>
                         <a class="nav-link" href="#option-container">container</a>
+                        <a class="nav-link" href="#option-ctrl">ctrl</a>
                         <a class="nav-link" href="#option-enabled">enabled</a>
                         <a class="nav-link" href="#option-mode">mode</a>
+                        <a class="nav-link" href="#option-move">move</a>
                         <a class="nav-link" href="#option-scroll">scroll</a>
                         <a class="nav-link" href="#option-scrollEdge">scrollEdge</a>
                         <a class="nav-link" href="#option-scrollbar">scrollbar</a>
                         <a class="nav-link" href="#option-select">select</a>
+                        <a class="nav-link" href="#option-shift">shift</a>
                         <a class="nav-link" href="#option-start">start</a>
                         <a class="nav-link" href="#option-stop">stop</a>
                         <a class="nav-link" href="#option-style">style</a>
@@ -604,6 +816,7 @@ var noose = new Noose({
                     <nav class="nav">
                         <a class="nav-link" href="#property-containers">containers</a>
                         <a class="nav-link" href="#property-coors">coors</a>
+                        <a class="nav-link" href="#property-lastSelection">lastSelection</a>
                         <a class="nav-link" href="#property-noose">noose</a>
                         <a class="nav-link" href="#property-opts">opts</a>
                         <a class="nav-link" href="#property-selected">selected</a>
@@ -613,6 +826,7 @@ var noose = new Noose({
                     <nav class="nav">
                         <a class="nav-link" href="#more-browser-selection">Browser Selection</a>
                         <a class="nav-link" href="#more-positioning">Positioning</a>
+                        <a class="nav-link" href="#more-shift-support">Shift Support</a>
                         <a class="nav-link" href="#more-touch-scrolling">Touch Scrolling</a>
                     </nav>
                 </nav>
@@ -626,7 +840,7 @@ var noose = new Noose({
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
-    <script src="https://cdn.jsdelivr.net/npm/noose@1.1.5/dist/noose.es5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.2.0/dist/noose.es5.min.js"></script>
 
     <script>
         (function () {
@@ -733,6 +947,73 @@ var noose = new Noose({
                 pos.h = $footer.height();
                 pos.w = $footer.width();
             });
+
+
+            $('.quadrant-example .quadrant').on('mouseover', function () {
+                var $this = $(this);
+                $('.quadrant-label').css('opacity', 1);
+                $this.css('opacity', 1);
+                $('.quadrant-example .marker-' + $this.attr('data-num')).css('opacity', 1);
+
+            }).on('mouseout', function () {
+                var $this = $(this);
+                $('.quadrant-label').css('opacity', .2);
+                $this.css('opacity', .2);
+                $('.quadrant-example .marker-' + $this.attr('data-num')).css('opacity', .2);
+            });
+
+            $(window).on('resize', function () {
+                var $example = $('.quadrant-example');
+                var $middle = $('.quadrant-example td.selected.middle');
+                var ex = {
+                    h: $example.outerHeight(),
+                    w: $example.outerWidth()
+                };
+                var mid = $middle.position();
+                mid.h = $middle.outerHeight();
+                mid.w = $middle.outerWidth();
+
+                $('.quadrant-example .quadrant-1').css({
+                    left: ex.w - (ex.w - mid.left) + (mid.w / 2),
+                    top: 0,
+                    width: ex.w - mid.left - (mid.w / 2),
+                    height: ex.h - (ex.h - mid.top) + (mid.h / 2)
+                });
+                $('.quadrant-example .marker-1').css({
+                    left: $('.quadrant-example td.selected.bottom-left').position().left - 8,
+                    top: $('.quadrant-example td.selected.bottom-left').position().top + $('.quadrant-example td.selected.bottom-left').outerHeight() - 8
+                });
+                $('.quadrant-example .quadrant-2').css({
+                    left: 0,
+                    top: 0,
+                    width: ex.w - (ex.w - mid.left) + (mid.w / 2),
+                    height: ex.h - (ex.h - mid.top) + (mid.h / 2)
+                });
+                $('.quadrant-example .marker-2').css({
+                    left: $('.quadrant-example td.selected.bottom-right').position().left + +$('.quadrant-example td.selected.bottom-right').outerWidth() - 8,
+                    top: $('.quadrant-example td.selected.bottom-right').position().top + $('.quadrant-example td.selected.bottom-right').outerHeight() - 8
+                });
+                $('.quadrant-example .quadrant-3').css({
+                    left: 0,
+                    top: ex.h - (ex.h - mid.top) + (mid.h / 2),
+                    width: ex.w - (ex.w - mid.left) + (mid.w / 2),
+                    height: ex.h - mid.top + (mid.h / 2)
+                });
+                $('.quadrant-example .marker-3').css({
+                    left: $('.quadrant-example td.selected.top-right').position().left + $('.quadrant-example td.selected.top-right').outerWidth() - 8,
+                    top: $('.quadrant-example td.selected.top-right').position().top - 8
+                });
+                $('.quadrant-example .quadrant-4').css({
+                    left: ex.w - (ex.w - mid.left) + (mid.w / 2),
+                    top: ex.h - (ex.h - mid.top) + (mid.h / 2),
+                    width: ex.w - mid.left - (mid.w / 2),
+                    height: ex.h - mid.top + (mid.h / 2)
+                });
+                $('.quadrant-example .marker-4').css({
+                    left: $('.quadrant-example td.selected.top-left').position().left - 8,
+                    top: $('.quadrant-example td.selected.top-left').position().top - 8
+                });
+            }).trigger('resize');
         }());
 
     </script>

@@ -349,54 +349,57 @@ new Noose('#option-select-false', {
                         </div>
                     </div>
                 </section>
-                <h3 id="option-start-stop-example">start and stop</h3>
+                <h3 id="option-start-move-stop-example">start, move, and stop</h3>
                 <section class="example mb-4">
                     <p>
                         Handling start and stop events.
                     </p>
-                    <div id="option-start-stop" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                    <div id="option-start-move-stop" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
                         <table class="table table-sm table-collapsed table-striped table-bordered">
                             <thead></thead>
                             <tbody></tbody>
                         </table>
                     </div>
-                    <div id="option-start-stop-result" class="p-2 my-2 border"></div>
+                    <div id="option-start-move-stop-result" class="p-2 my-2 border"></div>
                     <nav>
                         <div class="nav nav-tabs" role="tablist">
-                            <a class="nav-item nav-link active" id="option-start-stop-js-tab" data-toggle="tab" href="#option-start-stop-js" role="tab" aria-controls="option-start-stop-js" aria-selected="true">JavaScript</a>
-                            <a class="nav-item nav-link" id="option-start-stop-css-tab" data-toggle="tab" href="#option-start-stop-css" role="tab" aria-controls="option-start-stop-css" aria-selected="false">CSS</a>
-                            <a class="nav-item nav-link" id="option-start-stop-html-tab" data-toggle="tab" href="#option-start-stop-html" role="tab" aria-controls="option-start-stop-html" aria-selected="false">HTML</a>
+                            <a class="nav-item nav-link active" id="option-start-move-stop-js-tab" data-toggle="tab" href="#option-start-move-stop-js" role="tab" aria-controls="option-start-move-stop-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="option-start-move-stop-css-tab" data-toggle="tab" href="#option-start-move-stop-css" role="tab" aria-controls="option-start-move-stop-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="option-start-move-stop-html-tab" data-toggle="tab" href="#option-start-move-stop-html" role="tab" aria-controls="option-start-move-stop-html" aria-selected="false">HTML</a>
                         </div>
                     </nav>
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="option-start-stop-js" role="tabpanel" aria-labelledby="option-start-stop-js-tab">
+                        <div class="tab-pane fade show active" id="option-start-move-stop-js" role="tabpanel" aria-labelledby="option-start-move-stop-js-tab">
                             <pre class="prettyprint lang-js example-code">
-new Noose('#option-start-stop', {
+new Noose('#option-start-move-stop', {
     select: 'td',
     start: function(e, coors) {
-        $('#option-start-stop-result').text('Selecting...');
+        $('#option-start-move-stop-result').text('Selecting...');
+    },
+    move: function(e, coors, selected) {
+        $('#option-start-move-stop-result').text('In progress...' + selected.length + ' cell(s) selected');
     },
     stop: function(e, coors, selected) {
-        $('#option-start-stop-result').text(selected.length + ' cell(s) selected');
+        $('#option-start-move-stop-result').text(selected.length + ' cell(s) selected');
     }
 })
 </pre>
                         </div>
-                        <div class="tab-pane fade" id="option-start-stop-css" role="tabpanel" aria-labelledby="option-start-stop-css-tab">
+                        <div class="tab-pane fade" id="option-start-move-stop-css" role="tabpanel" aria-labelledby="option-start-move-stop-css-tab">
                             <pre class="prettyprint lang-css">.selected {
     background-color: rgba(36, 143, 220, 0.3) !important;
 }
 </pre>
                         </div>
-                        <div class="tab-pane fade" id="option-start-stop-html" role="tabpanel" aria-labelledby="option-start-stop-html-tab">
+                        <div class="tab-pane fade" id="option-start-move-stop-html" role="tabpanel" aria-labelledby="option-start-move-stop-html-tab">
                             <pre class="prettyprint lang-html">
-&lt;div id="option-start-stop"&gt;
+&lt;div id="option-start-move-stop"&gt;
     &lt;table&gt;
         &lt;thead&gt;...&lt;/thead&gt;
         &lt;tbody&gt;...&lt;/tbody&gt;
     &lt;/table&gt;
 &lt;/div&gt;
-&lt;div id="option-start-stop-result" class="p-2 my-2 border"&gt;&lt;/div&gt;
+&lt;div id="option-start-move-stop-result" class="p-2 my-2 border"&gt;&lt;/div&gt;
 </pre>
                         </div>
                     </div>
@@ -558,7 +561,7 @@ new Noose('#method-compute', {
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
-    <script src="https://cdn.jsdelivr.net/npm/noose@1.1.5/dist/noose.es5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.2.0/dist/noose.es5.min.js"></script>
     <script>
         (function () {
             'use strict';

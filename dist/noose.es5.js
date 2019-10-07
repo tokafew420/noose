@@ -11,7 +11,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /**
  * Noose
  * 
- * version: 1.1.5
+ * version: 1.2.0
  */
 (function (factory, window, document) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
@@ -28,8 +28,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 })(function (window, document) {
   'use strict';
 
-  function noop() {} // Default options
+  function noop() {}
 
+  var _min = Math.min;
+  var _max = Math.max; // Default options
 
   var defaults = {
     // Classes for styling
@@ -41,10 +43,14 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     compute: true,
     // Containing element for the noose
     container: 'body',
+    // Enable/disable support for ctrl key
+    ctrl: true,
     // Whether the noose is enabled
     enabled: true,
     // The selection mode, part or whole
     mode: 'touch',
+    // On noose move
+    move: noop,
     // The amount of pixels to scroll
     scroll: 10,
     // The edge offset when scrolling should happen
@@ -53,6 +59,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     scrollbar: 17,
     // Elements to select
     select: '*',
+    // Enabled/disable support for shift key
+    shift: true,
     // On noose-ing start handler
     start: noop,
     // On noose-ing stop handler
@@ -97,17 +105,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
       self.coors = {
         // Relative to document top left origin
-        pointer: {
-          start: null,
-          end: {} // The current/end position of the mouse/touch
-
-        },
+        pointer: {},
         // Relative to container
-        noose: {
-          top: null,
-          bottom: null // The bottom right position of the noose
-
-        },
+        noose: {},
         // Relative to document top left origin
         container: {}
       }; // Create noose
@@ -126,7 +126,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var throttled = false;
 
       self._onStart = function (e) {
-        if (opts.enabled && (!started || e.currentTarget !== self.currentTarget) && (e.type !== 'mousedown' || e.which === 1)) {
+        var sameContainer = e.currentTarget === self.currentTarget;
+
+        if (opts.enabled && (!started || !sameContainer) && (e.type !== 'mousedown' || e.which === 1)) {
           started = true;
           var element = self.currentTarget = e.currentTarget;
           var cCoors = self.coors.container;
@@ -150,21 +152,67 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
           cCoors.maxScrollY = cCoors.scrollY && element.scrollHeight - element.clientHeight || 0;
-          cCoors.maxScrollX = cCoors.scrollX && element.scrollWidth - element.clientWidth || 0; // Reset start positions
+          cCoors.maxScrollX = cCoors.scrollX && element.scrollWidth - element.clientWidth || 0; // Get previous start coors in case we need to restore them
+
+          var pStart = pCoors.start;
+          var pEnd = pCoors.end; // Reset start positions
 
           pCoors.start = null;
           nCoors.start = null;
           self.updateContainerPosition().updatePointerPosition(e); // If the scrollbar was click then don't start
 
-          if (opts.scrollbar && (cCoors.scrollX && pCoors.start.x > cCoors.x + cCoors.w - opts.scrollbar || cCoors.scrollY && pCoors.start.y > cCoors.y + cCoors.h - opts.scrollbar)) {
+          if (opts.scrollbar && (cCoors.scrollX && pCoors.end.x > cCoors.x + cCoors.w - opts.scrollbar || cCoors.scrollY && pCoors.end.y > cCoors.y + cCoors.h - opts.scrollbar)) {
             started = false;
+            pCoors.start = pStart;
+            pCoors.end = pEnd;
             return;
+          } // Shift key is pressed, continue noose from previous opposing corner
+
+
+          if (opts.shift && sameContainer && e.shiftKey && pStart) {
+            var nTop = nCoors.top;
+            var nBottom = nCoors.bottom;
+            var midX = Math.floor((pStart.x + pEnd.x) / 2);
+            var midY = Math.floor((pStart.y + pEnd.y) / 2);
+            nCoors.start = {};
+
+            if (pCoors.start.x >= midX && pCoors.start.y < midY) {
+              // 1st quadrant
+              pCoors.start.x = _min(pStart.x, pEnd.x);
+              pCoors.start.y = _max(pStart.y, pEnd.y);
+              nCoors.start.x = nTop.x;
+              nCoors.start.y = nBottom.y;
+            } else if (pCoors.start.x < midX && pCoors.start.y <= midY) {
+              // 2nd quadrant
+              pCoors.start.x = _max(pStart.x, pEnd.x);
+              pCoors.start.y = _max(pStart.y, pEnd.y);
+              nCoors.start = nBottom;
+            } else if (pCoors.start.x <= midX && pCoors.start.y > midY) {
+              // 3rd quadrant
+              pCoors.start.x = _max(pStart.x, pEnd.x);
+              pCoors.start.y = _min(pStart.y, pEnd.y);
+              nCoors.start.x = nBottom.x;
+              nCoors.start.y = nTop.y;
+            } else if (pCoors.start.x > midX && pCoors.start.y >= midY) {
+              // 4th quadrant
+              pCoors.start.x = _min(pStart.x, pEnd.x);
+              pCoors.start.y = _min(pStart.y, pEnd.y);
+              nCoors.start = nTop;
+            }
+          }
+
+          if (opts.ctrl && sameContainer && e.ctrlKey) {
+            self.lastSelection = self.selected || [];
+          } else {
+            self.lastSelection = [];
           }
 
           noose.style.display = 'none';
 
           if (opts.start.apply(self, [e, self.coors]) === false) {
             started = false;
+            pCoors.start = pStart;
+            pCoors.end = pEnd;
             return;
           }
 
@@ -185,10 +233,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
             var nTop = self.coors.noose.top;
             var nBottom = self.coors.noose.bottom;
-            noose.style.left = nTop.x + 'px';
-            noose.style.top = nTop.y + 'px';
-            noose.style.width = nBottom.x - nTop.x + 'px';
-            noose.style.height = nBottom.y - nTop.y + 'px';
+            noose.style.left = nTop.x;
+            noose.style.top = nTop.y;
+            noose.style.width = nBottom.x - nTop.x;
+            noose.style.height = nBottom.y - nTop.y;
             noose.style.display = 'block'; // Scroll container
 
             var element = self.currentTarget;
@@ -203,12 +251,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
                 if (!throttled) {
                   throttled = true;
                   setTimeout(function () {
-                    self.compute();
+                    throttled && self.compute() && opts.move.apply(self, [e, self.coors, self.selected]);
                     throttled = false;
                   }, opts.throttle);
                 }
               } else {
                 self.compute();
+                opts.move.apply(self, [e, self.coors, self.selected]);
               }
             }
           }
@@ -221,7 +270,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
           if (e.currentTarget === self.currentTarget) {
             self.updateContainerPosition().updatePointerPosition(e).updateNoosePosition();
-            opts.compute && self.compute();
+            throttled = false; // Don't run throttled compute after noose action already completed
+
+            opts.compute && self.compute(true);
             setTimeout(function () {
               opts.stop.apply(self, [e, self.coors, self.selected]);
             }, 0);
@@ -325,14 +376,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       key: "updateNoosePosition",
       value: function updateNoosePosition() {
         var element = this.currentTarget;
-        var pCoors = this.coors.pointer;
+        var pEnd = this.coors.pointer.end;
         var cCoors = this.coors.container;
         var nCoors = this.coors.noose; // Pointer and container are both relative to document top left origin.
         // The noose is positioned absolute relative to the container. So that's
         // (pointer - container), and also account for the container's scroll position.
 
-        var endX = Math.max(pCoors.end.x - cCoors.x + element.scrollLeft, 0);
-        var endY = Math.max(pCoors.end.y - cCoors.y + element.scrollTop, 0);
+        var endX = _max(pEnd.x - cCoors.x + element.scrollLeft, 0);
+
+        var endY = _max(pEnd.y - cCoors.y + element.scrollTop, 0);
 
         if (!nCoors.start) {
           // Keep start position static
@@ -345,12 +397,12 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 
         nCoors.top = {
-          x: Math.min(nCoors.start.x, endX),
-          y: Math.min(nCoors.start.y, endY)
+          x: _min(nCoors.start.x, endX),
+          y: _min(nCoors.start.y, endY)
         };
         nCoors.bottom = {
-          x: Math.min(Math.max(nCoors.start.x, endX), element.scrollWidth),
-          y: Math.min(Math.max(nCoors.start.y, endY), element.scrollHeight)
+          x: _min(_max(nCoors.start.x, endX), element.scrollWidth),
+          y: _min(_max(nCoors.start.y, endY), element.scrollHeight)
         };
         return this;
       }
@@ -367,7 +419,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
         if (self.opts.select) {
           var className = self.opts.classes.selected;
-          var elements = self.currentTarget.querySelectorAll(self.opts.select);
+          var container = self.currentTarget;
+          var elements = container.querySelectorAll(self.opts.select);
           var nTop = self.coors.noose.top;
           var nBottom = self.coors.noose.bottom;
           var offsetX = self.coors.container.x;
@@ -376,11 +429,11 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
           Array.prototype.forEach.call(elements, function (element) {
             if (element === self.noose) return; // Don't include noose
 
-            var include = false; // Get absolute position of element relative to container
+            var include; // Get absolute position of element relative to container
 
             var rect = element.getBoundingClientRect();
-            var topX = rect.left + window.pageXOffset - offsetX + self.currentTarget.scrollLeft;
-            var topY = rect.top + window.pageYOffset - offsetY + self.currentTarget.scrollTop;
+            var topX = rect.left + window.pageXOffset - offsetX + container.scrollLeft;
+            var topY = rect.top + window.pageYOffset - offsetY + container.scrollTop;
             var bottomX = rect.width + topX;
             var bottomY = rect.height + topY;
 
@@ -392,7 +445,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
               include = !(nTop.x > bottomX || nTop.y > bottomY || nBottom.x < topX || nBottom.y < topY);
             }
 
-            if (include) {
+            var idx = self.lastSelection.indexOf(element);
+
+            if (include && idx === -1 || !include && idx !== -1) {
               className && element.classList.add(className);
               self.selected.push(element);
             } else {
@@ -410,7 +465,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }], [{
       key: "version",
       get: function get() {
-        return '1.1.5';
+        return '1.2.0';
       }
     }]);
 
