@@ -155,6 +155,7 @@ var noose = new Noose('.my-container');
                             <li><span class="code">selected</span> <i>string</i> - Class is applied to selected elements. Default is <span class="code">'selected'</span>.</li>
                         </ul>
                         <p><a href="./examples.html#option-classes-example">See example</a></p>
+                        <p><i>Note: </i>If the default <a class="inline-toc" href="#option-style"><span class="code">options.style</span></a> options are applied, then use <span class="code">!important</span> in your CSS rules to override them.</p>
                     </section>
                     <section>
                         <h3 class="py-2" id="option-compute">compute
@@ -402,7 +403,7 @@ var noose = new Noose({
                     </h2>
                     <hr />
                     <section>
-                        <h3 class="py-2" id="method-compute">compute
+                        <h3 class="py-2" id="method-compute">compute()
                             <a class="ml-2 doc-link" aria-hidden="true" href="#method-compute">
                                 <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
@@ -418,7 +419,26 @@ var noose = new Noose({
                         <p><a href="./examples.html#method-compute">See example</a></p>
                     </section>
                     <section>
-                        <h3 class="py-2" id="method-destroy">destroy
+                        <h3 class="py-2" id="method-deregister">deregister(container)
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#method-deregister">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            Un-registers a container from the Noose instance. Interacting with the container Element will no longer activate nooosing.
+                        </p>
+                        <ul>
+                            <li><span class="code">container</span> <i>HTMLElement</i> - An existing container that is registered on the <span class="code">'noose'</span> instance.</li>
+                        </ul>
+                        <p>
+                            Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
+                        </p>
+                        <p><a href="./examples.html#method-de-register">See example</a></p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="method-destroy">destroy()
                             <a class="ml-2 doc-link" aria-hidden="true" href="#method-destroy">
                                 <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
@@ -430,6 +450,25 @@ var noose = new Noose({
                         <p>
                             Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
                         </p>
+                    </section>
+                    <section>
+                        <h3 class="py-2" id="method-register">register(container)
+                            <a class="ml-2 doc-link" aria-hidden="true" href="#method-register">
+                                <svg viewBox="0 0 16 16" version="1.1" width="18" height="18" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+                                </svg>
+                            </a>
+                        </h3>
+                        <p>
+                            Registers a container Element to the Noose instance.
+                        </p>
+                        <ul>
+                            <li><span class="code">container</span> <i>HTMLElement</i> - An new container Elmenet to be registered on the <span class="code">'noose'</span> instance.</li>
+                        </ul>
+                        <p>
+                            Returns - <i>Noose</i> - The current instance of Noose. (for chaining).
+                        </p>
+                        <p><a href="./examples.html#method-de-register">See example</a></p>
                     </section>
                 </section>
                 <section>
@@ -810,7 +849,9 @@ var noose = new Noose({
                     <a class="nav-link" href="#methods">Methods</a>
                     <nav class="nav">
                         <a class="nav-link" href="#method-compute">compute</a>
+                        <a class="nav-link" href="#method-deregister">deregister</a>
                         <a class="nav-link" href="#method-destroy">destroy</a>
+                        <a class="nav-link" href="#method-register">register</a>
                     </nav>
                     <a class="nav-link" href="#properties">Properties</a>
                     <nav class="nav">
@@ -840,8 +881,7 @@ var noose = new Noose({
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
-    <script src="https://cdn.jsdelivr.net/npm/noose@1.2.0/dist/noose.es5.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.2.1/dist/noose.es5.min.js"></script>
     <script>
         (function () {
             'user strict';

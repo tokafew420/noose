@@ -552,6 +552,77 @@ new Noose('#method-compute', {
                         </div>
                     </div>
                 </section>
+                <h3 id="method-de-register-example">[de]register</h3>
+                <section class="example mb-4">
+                    <p>
+                        Manually register/deregister containers. Unlike the <span class="code">enabled</span> option, this will completely remove
+                        add/remove all functionality.
+                    </p>
+                    <div id="method-de-register-actions" class="p-2 my-2 border">
+                        <button type="button" id="method-register-btn">Register</button>
+                        <button type="button" id="method-deregister-btn">Deregister</button>
+                        <span id="method-de-register-lbl">Registered</span>
+                    </div>
+                    <div id="method-de-register" class="example-target no-select p-2 mb-2" data-columns="4" data-rows="10">
+                        <table class="table table-sm table-collapsed table-striped table-bordered">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" id="method-de-register-js-tab" data-toggle="tab" href="#method-de-register-js" role="tab" aria-controls="method-de-register-js" aria-selected="true">JavaScript</a>
+                            <a class="nav-item nav-link" id="method-de-register-css-tab" data-toggle="tab" href="#method-de-register-css" role="tab" aria-controls="method-de-register-css" aria-selected="false">CSS</a>
+                            <a class="nav-item nav-link" id="method-de-register-html-tab" data-toggle="tab" href="#method-de-register-html" role="tab" aria-controls="method-de-register-html" aria-selected="false">HTML</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="method-de-register-js" role="tabpanel" aria-labelledby="method-de-register-js-tab">
+                            <pre class="prettyprint lang-js example-code">
+(function() {
+    var noose = new Noose('#method-de-register', {
+        select: 'td',
+    });
+
+    var container = document.getElementById('method-de-register');
+    var lbl = document.getElementById('method-de-register-lbl');
+    var deregisterBtn = document.getElementById('method-deregister-btn');
+    var registerBtn = document.getElementById('method-register-btn');
+
+    deregisterBtn.addEventListener('click', function() {
+        noose.deregister(container);
+        lbl.innerHTML = 'Deregistered';
+    });
+    registerBtn.addEventListener('click', function() {
+        noose.register(container);
+        lbl.innerHTML = 'Registered';
+    });
+}())
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="method-de-register-css" role="tabpanel" aria-labelledby="method-de-register-css-tab">
+                            <pre class="prettyprint lang-css">.selected {
+    background-color: rgba(36, 143, 220, 0.3) !important;
+}
+</pre>
+                        </div>
+                        <div class="tab-pane fade" id="method-de-register-html" role="tabpanel" aria-labelledby="method-de-register-html-tab">
+                            <pre class="prettyprint lang-html">
+&lt;div id="method-de-register-actions" class="p-2 my-2 border"&gt;
+    &lt;button type="button" id="method-deregister-btn"&gt;Deregister&lt;/button&gt;
+    &lt;button type="button" id="method-register-btn"&gt;Register&lt;/button&gt;
+    &lt;span id="method-de-register-lbl"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div id="method-de-register"&gt;
+    &lt;table&gt;
+        &lt;thead&gt;...&lt;/thead&gt;
+        &lt;tbody&gt;...&lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</pre>
+                        </div>
+                    </div>
+                </section>
             </main>
         </div>
     </div>
@@ -561,7 +632,7 @@ new Noose('#method-compute', {
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
-    <script src="https://cdn.jsdelivr.net/npm/noose@1.2.0/dist/noose.es5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/noose@1.2.1/dist/noose.es5.min.js"></script>
     <script>
         (function () {
             'use strict';

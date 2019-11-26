@@ -14,7 +14,7 @@ Simple lasso (noose) tool in vanilla JavaScript. Inspired by jQuery UI's [select
     </a>
 </p>
 
-`Noose` is kept simple for performance. Its only purpose is to calculate the region to draw and then determine the elements to mark as selected. No CSS is provided, styling is left to the user. Checkout the [documentation](https://tokafew420.github.io/noose/documentation.html) for details and code examples.
+`Noose` is kept simple for performance. Its only purpose is to calculate the region to render and then determine the elements to mark as selected. No CSS is provided, styling is left to the user. Checkout the [documentation](https://tokafew420.github.io/noose/documentation.html) for details and code examples.
 
 ## Documentation ##
 Go to [https://tokafew420.github.io/noose/](https://tokafew420.github.io/noose/documentation.html) for usage, api, and examples.

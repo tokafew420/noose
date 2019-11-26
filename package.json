@@ -1,6 +1,6 @@
 {
   "name": "noose",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/noose.min.js",
   "author": "Tony Vu <tokafew420@gmail.com>",
   "license": "MIT",

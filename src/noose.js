@@ -11,7 +11,7 @@
     } else if (typeof define === 'function' && define.amd) {
         // AMD
         define(() => {
-            return factory(window, document)
+            return factory(window, document);
         });
     } else {
         window.Noose = factory(window, document);
@@ -22,6 +22,7 @@
     function noop() {}
     const _min = Math.min;
     const _max = Math.max;
+    const _unit = 'px';
 
     // Default options
     const defaults = {
@@ -34,6 +35,8 @@
         compute: true,
         // Containing element for the noose
         container: 'body',
+        // Array of containers registered on this instance.
+        containers: [],
         // Enable/disable support for ctrl key
         ctrl: true,
         // Whether the noose is enabled
@@ -82,7 +85,7 @@
             if (opts.container instanceof HTMLElement) {
                 self.containers = [opts.container];
             } else if (typeof opts.container === 'string') {
-                self.containers = document.querySelectorAll(opts.container);
+                self.containers = Array.prototype.slice.call(document.querySelectorAll(opts.container));
             } else {
                 throw new Error('Invalid container option');
             }
@@ -214,10 +217,10 @@
                         // Draw noose
                         let nTop = self.coors.noose.top;
                         let nBottom = self.coors.noose.bottom;
-                        noose.style.left = nTop.x;
-                        noose.style.top = nTop.y;
-                        noose.style.width = (nBottom.x - nTop.x);
-                        noose.style.height = (nBottom.y - nTop.y);
+                        noose.style.left = nTop.x + _unit;
+                        noose.style.top = nTop.y + _unit;
+                        noose.style.width = (nBottom.x - nTop.x) + _unit;
+                        noose.style.height = (nBottom.y - nTop.y) + _unit;
                         noose.style.display = 'block';
 
                         // Scroll container
@@ -259,7 +262,7 @@
                     started = false;
                     if (e.currentTarget === self.currentTarget) {
                         self.updateContainerPosition().updatePointerPosition(e).updateNoosePosition();
-                        throttled = false;  // Don't run throttled compute after noose action already completed
+                        throttled = false; // Don't run throttled compute after noose action already completed
                         opts.compute && self.compute(true);
                         setTimeout(function () {
                             opts.stop.apply(self, [e, self.coors, self.selected]);
@@ -269,18 +272,8 @@
                 }
             };
             // Register handlers
-            Array.prototype.forEach.call(self.containers, function (container) {
-                // Fixing chrome mobile touch event issue
-                // https://developers.google.com/web/updates/2017/01/scrolling-intervention
-                container.addEventListener('mousedown', self._onStart);
-                container.addEventListener('touchstart', self._onStart, false);
-                container.addEventListener('mousemove', self._onMove);
-                container.addEventListener('touchmove', self._onMove, false);
-                container.addEventListener('scroll', self._onMove);
-                container.addEventListener('mouseup', self._onEnd);
-                container.addEventListener('touchend', self._onEnd, false);
-
-                container.noose = self;
+            self.containers.forEach(container => {
+                self._register(container);
             });
 
             return self;
@@ -292,16 +285,8 @@
          */
         destroy() {
             const self = this;
-            self.containers.forEach(function (container) {
-                container.removeEventListener('mousedown', self._onStart);
-                container.removeEventListener('touchstart', self._onStart);
-                container.removeEventListener('mousemove', self._onMove);
-                container.removeEventListener('touchmove', self._onMove);
-                container.removeEventListener('scroll', self._onMove);
-                container.removeEventListener('mouseup', self._onEnd);
-                container.removeEventListener('touchend', self._onEnd);
-
-                delete container.noose;
+            self.containers.forEach(container => {
+                self._deregister(container);
             });
             self.noose.remove();
             self.noose = null;
@@ -327,6 +312,7 @@
         /**
          * Update the current pointer (mouse/touch) position.
          *
+         * @param {Event} e The event that prompted recalculation of the noose (ie: mousemove, touchmove, or scroll).
          * @returns {Noose} This instance.
          */
         updatePointerPosition(e) {
@@ -436,6 +422,60 @@
             }
 
             return self;
+        }
+        _deregister(container) {
+            container.removeEventListener('mousedown', this._onStart);
+            container.removeEventListener('touchstart', this._onStart);
+            container.removeEventListener('mousemove', this._onMove);
+            container.removeEventListener('touchmove', this._onMove);
+            container.removeEventListener('scroll', this._onMove);
+            container.removeEventListener('mouseup', this._onEnd);
+            container.removeEventListener('touchend', this._onEnd);
+
+            delete container.noose;
+
+            return this;
+        }
+        /**
+         * Deregister a container from the Noose instance.
+         * 
+         * @param {HTMLElement} container The container to remove.
+         * @returns {Noose} This instance.
+         */
+        deregister(container) {
+            var idx = this.containers.indexOf(container);
+            if (idx > -1 && typeof container.removeEventListener === 'function') {
+                this._deregister(container);
+                this.containers.splice(idx, 1);
+            }
+            return this;
+        }
+        _register(container) {
+            // Fixing chrome mobile touch event issue
+            // https://developers.google.com/web/updates/2017/01/scrolling-intervention
+            container.addEventListener('mousedown', this._onStart);
+            container.addEventListener('touchstart', this._onStart, false);
+            container.addEventListener('mousemove', this._onMove);
+            container.addEventListener('touchmove', this._onMove, false);
+            container.addEventListener('scroll', this._onMove);
+            container.addEventListener('mouseup', this._onEnd);
+            container.addEventListener('touchend', this._onEnd, false);
+
+            return container.noose = this;
+        }
+        /**
+         * Register a container to the Noose instance.
+         * 
+         * @param {HTMLElement} container The container to register.
+         * @returns {Noose} This instance.
+         */
+        register(container) {
+            var idx = this.containers.indexOf(container);
+            if (idx === -1 && typeof container.addEventListener === 'function') {
+                this._register(container);
+                this.containers.push(container);
+            }
+            return this;
         }
         /**
          * Get the current version.
