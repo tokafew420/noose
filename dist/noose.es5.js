@@ -6,12 +6,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * Noose
  * 
- * version: 1.2.1
+ * version: 1.2.2
  */
 (function (factory, window, document) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
@@ -48,6 +48,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     containers: [],
     // Enable/disable support for ctrl key
     ctrl: true,
+    // Whether to detach the noose from the container after noosing
+    detach: true,
     // Whether the noose is enabled
     enabled: true,
     // The selection mode, part or whole
@@ -77,9 +79,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     throttle: 200
   };
 
-  var Noose =
-  /*#__PURE__*/
-  function () {
+  var Noose = /*#__PURE__*/function () {
     function Noose(container, opts) {
       _classCallCheck(this, Noose);
 
@@ -279,7 +279,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             setTimeout(function () {
               opts.stop.apply(self, [e, self.coors, self.selected]);
             }, 0);
-            self.currentTarget.removeChild(noose);
+            if (opts.detach) self.currentTarget.removeChild(noose);
           }
         }
       }; // Register handlers
@@ -426,7 +426,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             var bottomY = rect.height + topY;
 
             if (self.opts.mode === 'fit') {
-              // Include is entire element is within noose
+              // Include if entire element is within noose
               include = nTop.x <= topX && nTop.y <= topY && nBottom.x >= bottomX && nBottom.y >= bottomY;
             } else {
               // Include if partially touching
@@ -520,7 +520,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }], [{
       key: "version",
       get: function get() {
-        return '1.2.1';
+        return '1.2.2';
       }
     }]);
 

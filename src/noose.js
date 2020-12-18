@@ -19,7 +19,7 @@
 }(function (window, document) {
     'use strict';
 
-    function noop() {}
+    function noop() { }
     const _min = Math.min;
     const _max = Math.max;
     const _unit = 'px';
@@ -39,6 +39,8 @@
         containers: [],
         // Enable/disable support for ctrl key
         ctrl: true,
+        // Whether to detach the noose from the container after noosing
+        detach: true,
         // Whether the noose is enabled
         enabled: true,
         // The selection mode, part or whole
@@ -267,7 +269,7 @@
                         setTimeout(function () {
                             opts.stop.apply(self, [e, self.coors, self.selected]);
                         }, 0);
-                        self.currentTarget.removeChild(noose);
+                        if (opts.detach) self.currentTarget.removeChild(noose);
                     }
                 }
             };
@@ -403,7 +405,7 @@
                     const bottomY = rect.height + topY;
 
                     if (self.opts.mode === 'fit') {
-                        // Include is entire element is within noose
+                        // Include if entire element is within noose
                         include = nTop.x <= topX && nTop.y <= topY && nBottom.x >= bottomX && nBottom.y >= bottomY;
                     } else {
                         // Include if partially touching

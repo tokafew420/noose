@@ -1,6 +1,6 @@
 {
   "name": "noose",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "dist/noose.min.js",
   "author": "Tony Vu <tokafew420@gmail.com>",
   "license": "MIT",
@@ -11,8 +11,8 @@
   "homepage": "https://tokafew420.github.io/noose/",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
@@ -20,8 +20,11 @@
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-string-replace": "^1.1.2",
-    "gulp-terser": "^1.2.0",
-    "terser": "^4.3.1"
+    "gulp-terser": "^1.4.1",
+    "terser": "^4.8.0"
+  },
+  "scripts": {
+    "gulp": "gulp"
   },
   "keywords": [
     "drag",

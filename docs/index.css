@@ -109,6 +109,11 @@ h3:hover .doc-link {
   background-color: rgba(36, 143, 220, 0.3);
 }
 
+.noose-light-red {
+  border-color: #FFF !important;
+  background-color: rgba(216, 10, 10, 0.4);
+}
+
 .selected {
   background-color: rgba(36, 143, 220, 0.3) !important;
 }
